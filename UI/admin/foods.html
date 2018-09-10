@@ -21,8 +21,6 @@
                 <a class="alink" style="display: none;">_</a>
                 <a href="#">
                     <i class="fa fa-user"></i> Hello! Admin</a>
-                <a href="index.html#new-orders">
-                    <i class="fa fa-dollar"></i> New Orders</a>
                 <a href="index.html#all-orders">
                     <i class="fa fa-dollar"></i> All Orders</a>
                 <a href="../login.html">
@@ -46,8 +44,8 @@
                     <div class="col-2-3">
                         <select>
                             <option value="all">All</option>
-                            <option value="new">newest</option>
-                            <option value="accepted">oldest</option>
+                            <option value="newest">newest</option>
+                            <option value="oldest">oldest</option>
                         </select>
                     </div>
                 </div>
@@ -79,7 +77,7 @@
                             <button class="accept-btn" onclick="showModal('edit-meal')">Edit</button>
                         </td>
                         <td data-label="">
-                            <button class="reject-btn">Delete</button>
+                            <button class="reject-btn" onclick="showModal('del-confirmation')">Delete</button>
                         </td>
                     </tr>
                     <tr>
@@ -94,7 +92,7 @@
                             <button class="accept-btn" onclick="showModal('edit-meal')">Edit</button>
                         </td>
                         <td data-label="">
-                            <button class="reject-btn">Delete</button>
+                            <button class="reject-btn" onclick="showModal('del-confirmation')">Delete</button>
                         </td>
                     </tr>
                     <tr>
@@ -109,7 +107,7 @@
                             <button class="accept-btn" onclick="showModal('edit-meal')">Edit</button>
                         </td>
                         <td data-label="">
-                            <button class="reject-btn">Delete</button>
+                            <button class="reject-btn" onclick="showModal('del-confirmation')">Delete</button>
                         </td>
                     </tr>
                     <tr>
@@ -124,7 +122,7 @@
                             <button class="accept-btn" onclick="showModal('edit-meal')">Edit</button>
                         </td>
                         <td data-label="">
-                            <button class="reject-btn">Delete</button>
+                            <button class="reject-btn" onclick="showModal('del-confirmation')">Delete</button>
                         </td>
                     </tr>
                 </tbody>
@@ -165,6 +163,27 @@
             <input type="file" name="" id="image">
             <button style="margin-top: auto;" type="submit">Add Food</button>
         </form>
+    </div>
+    <div class="modal" id="del-confirmation">
+        <div class="container modal-content animate">
+            <div class="imgcontainer">
+                <span style="margin-top: -15px; margin-left: 5px;" onclick="closeModal('del-confirmation')" class="close" title="Close Modal">&times;</span>
+            </div>
+            <h3>Confirm Action</h3>
+            <h4 class="text-center" style="margin-top: 50px;">
+                Are you sure you want to delete food item "Flying Rice" ?
+            </h4>
+            <div class="row" style="margin-bottom: 15px;">
+                <div class="col-2">
+                    <button class="btn accept-btn" onclick="closeModal('del-confirmation')">Yes</button>
+                </div>
+                <div class="col-2">
+                    <div class="mg-left-10">
+                        <button class="btn reject-btn mg-top-5" onclick="closeModal('del-confirmation')">No</button>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
     <footer>
         <p class="text-center">&copy; 2018 FoodFast</p>
