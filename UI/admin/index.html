@@ -76,53 +76,76 @@
                         <td data-label="Amount">₦1,190.50</td>
                         <td data-label="Date">08/31/2018</td>
                         <td data-label="Status">Pending</td>
+                        <td data-label=""><button class="accept-btn">Accept</button></td>
+                        <td data-label=""><button class="reject-btn" onclick="showModal('order-reject')">Reject</button></td>
+                    </tr>
+                    <tr ondblclick="showModal('order-info')">
+                        <td data-label="ID">OD40</td>
+                        <td data-label="Customer">as@hoo.com</td>
+                        <td data-label="Food">Fried Burger</td>
+                        <td data-label="Qty">5</td>
+                        <td data-label="Amount">₦1,190.50</td>
+                        <td data-label="Date">08/31/2018</td>
+                        <td data-label="Status">Completed</td>
                         <td data-label=""></td>
                         <td data-label=""></td>
                     </tr>
                     <tr ondblclick="showModal('order-info')">
-                        <td data-label="ID">OD45</td>
-                        <td data-label="Customer">ja@ya.com</td>
+                        <td data-label="ID">OD58</td>
+                        <td data-label="Customer">ma@hoo.com</td>
+                        <td data-label="Food">Fried Burger</td>
+                        <td data-label="Qty">5</td>
+                        <td data-label="Amount">₦1,190.50</td>
+                        <td data-label="Date">08/31/2018</td>
+                        <td data-label="Status">Accepted</td>
+                        <td data-label=""><button class="accept-btn" onclick="showModal('update')">Update</button></td>
+                        <td data-label=""></td>
+                    </tr>
+                    <tr ondblclick="showModal('order-info')">
+                        <td data-label="ID">OD76</td>
+                        <td data-label="Customer">oa@ya.com</td>
+                        <td data-label="Food">Fried Burger</td>
+                        <td data-label="Qty">5</td>
+                        <td data-label="Amount">₦1,190.50</td>
+                        <td data-label="Date">08/31/2018</td>
+                        <td data-label="Status">Completed</td>
+                        <td data-label=""></td>
+                        <td data-label=""></td>
+                    </tr>
+                    <tr ondblclick="showModal('order-info')">
+                        <td data-label="ID">OD87</td>
+                        <td data-label="Customer">ma@yao.com</td>
+                        <td data-label="Food">Fried Burger</td>
+                        <td data-label="Qty">5</td>
+                        <td data-label="Amount">₦1,190.50</td>
+                        <td data-label="Date">08/31/2018</td>
+                        <td data-label="Status">Cancelled</td>
+                        <td data-label=""></td>
+                        <td data-label=""></td>
+                    </tr>
+                    <tr ondblclick="showModal('order-info')">
+                        <td data-label="ID">OD94</td>
+                        <td data-label="Customer">ja@yao.com</td>
+                        <td data-label="Food">Fried Burger</td>
+                        <td data-label="Qty">50</td>
+                        <td data-label="Amount">₦1,190.50</td>
+                        <td data-label="Date">08/31/2018</td>
+                        <td data-label="Status">Cancelled</td>
+                        <td data-label=""></td>
+                        <td data-label=""></td>
+                    </tr>
+                    <tr ondblclick="showModal('order-info')">
+                        <td data-label="ID">OD568</td>
+                        <td data-label="Customer">ja@yao.com</td>
                         <td data-label="Food">Fried Burger</td>
                         <td data-label="Qty">5</td>
                         <td data-label="Amount">₦1,190.50</td>
                         <td data-label="Date">08/31/2018</td>
                         <td data-label="Status">Pending</td>
-                        <td data-label=""></td>
-                        <td data-label=""></td>
+                        <td data-label=""><button class="accept-btn">Accept</button></td>
+                        <td data-label=""><button class="reject-btn" onclick="showModal('order-reject')">Reject</button></td>
                     </tr>
-                    <tr ondblclick="showModal('order-info')">
-                        <td data-label="ID">OD45</td>
-                        <td data-label="Customer">ja@ya.com</td>
-                        <td data-label="Food">Fried Burger</td>
-                        <td data-label="Qty">5</td>
-                        <td data-label="Amount">₦1,190.50</td>
-                        <td data-label="Date">08/31/2018</td>
-                        <td data-label="Status">Pending</td>
-                        <td data-label=""></td>
-                        <td data-label=""></td>
-                    </tr>
-                    <tr ondblclick="showModal('order-info')">
-                        <td data-label="ID">OD45</td>
-                        <td data-label="Customer">ja@ya.com</td>
-                        <td data-label="Food">Fried Burger</td>
-                        <td data-label="Qty">5</td>
-                        <td data-label="Amount">₦1,190.50</td>
-                        <td data-label="Date">08/31/2018</td>
-                        <td data-label="Status">Pending</td>
-                        <td data-label=""></td>
-                        <td data-label=""></td>
-                    </tr>
-                    <tr ondblclick="showModal('order-info')">
-                        <td data-label="ID">OD45</td>
-                        <td data-label="Customer">ja@ya.com</td>
-                        <td data-label="Food">Fried Burger</td>
-                        <td data-label="Qty">5</td>
-                        <td data-label="Amount">₦1,190.50</td>
-                        <td data-label="Date">08/31/2018</td>
-                        <td data-label="Status">Pending</td>
-                        <td data-label=""></td>
-                        <td data-label=""></td>
-                    </tr>
+
                 </tbody>
             </table>
         </div>
@@ -171,6 +194,27 @@
                     <div class="mg-left-10">
                         <label for="status">Order Status</label>
                         <input type="text" name="" id="status" value="Completed" disabled>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal" id="order-reject">
+        <div class="container modal-content animate">
+            <div class="imgcontainer">
+                <span style="margin-top: -15px; margin-left: 5px;" onclick="closeModal('order-reject')" class="close" title="Close Modal">&times;</span>
+            </div>
+            <h3>Confirm Action</h3>
+            <h4 class="text-center" style="margin-top: 50px;">
+                Are you sure you want to cancel Order OD 3455-5888 ?
+            </h4>
+            <div class="row" style="margin-bottom: 15px;">
+                <div class="col-2">
+                    <button class="btn accept-btn" onclick="closeModal('order-reject')">Yes</button>
+                </div>
+                <div class="col-2">
+                    <div class="mg-left-10">
+                        <button class="btn reject-btn mg-top-5" onclick="closeModal('order-reject')">No</button>
                     </div>
                 </div>
             </div>
