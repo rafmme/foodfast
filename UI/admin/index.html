@@ -157,10 +157,18 @@
                 <span style="margin-top: -15px;" onclick="closeModal('order-info')" class="close" title="Close Modal">&times;</span>
             </div>
             <h3>Order Information</h3>
-            <label for="orderID">Order ID</label>
-            <input type="text" name="" id="orderID" value="OD45-2018" disabled>
-            <label for="customer">Customer</label>
-            <input type="text" name="" id="customer" value="rafmme@gmail.com" disabled>
+            <div class="row">
+                <div class="col-2">
+                    <label for="orderID">Order ID</label>
+                    <input type="text" name="" id="orderID" value="OD4558-5777" disabled>
+                </div>
+                <div class="col-2">
+                    <div class="mg-left-10">
+                        <label for="customer">Customer</label>
+                        <input type="text" name="" id="customer" value="rafmme@gmail.com" disabled>
+                    </div>
+                </div>
+            </div>
             <label for="title">Food Item</label>
             <input type="text" name="" id="title" value="Flying Sphagethti" disabled>
             <div class="row">
@@ -219,6 +227,45 @@
                 </div>
             </div>
         </div>
+    </div>
+    <div id="update" class="modal">
+        <form class="container modal-content animate" id="update-form">
+            <div class="imgcontainer">
+                <span style="margin-top: -15px;" onclick="closeModal('update')" class="close" title="Close Modal">&times;</span>
+            </div>
+            <h3>Update Order</h3>
+            <div class="row">
+                <div class="col-2">
+                    <label for="orderID">Order ID</label>
+                    <input type="text" name="" id="orderID" value="OD4558-5777" disabled>
+                </div>
+                <div class="col-2">
+                    <div class="mg-left-10">
+                        <label for="customer">Customer</label>
+                        <input type="text" name="" id="customer" value="rafmme@gmail.com" disabled>
+                    </div>
+                </div>
+            </div>
+            <label for="title">Food</label>
+            <input type="text" name="" id="title" disabled value="Fried Water">
+            <div class="row">
+                <div class="col-2"> <label for="qty">Quantity</label>
+                    <input type="number" value="2" name="" id="qty" disabled>
+                </div>
+                <div class="col-2">
+                    <div class="mg-left-10">
+                        <label for="price">Total Price</label>
+                        <input type="text" value="₦ 16,700.50" name="" id="price" disabled>
+                    </div>
+                </div>
+            </div>
+            <label for="Status">Mark as completed</label>
+            <select name="" id="status">
+                <option value=""></option>
+                <option value="completed">completed</option>
+            </select>
+            <button style="margin-top: auto;" type="submit">Modify Order</button>
+        </form>
     </div>
     <footer>
         <p class="text-center">&copy; 2018 FoodFast</p>
