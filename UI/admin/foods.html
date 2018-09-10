@@ -52,6 +52,8 @@
                     </div>
                 </div>
             </form>
+            <button class="add-meal-btn" onclick="showModal('add-meal')">
+                <i class="fa fa-plus"></i> Add New Food</button>
             <table>
                 <thead>
                     <tr>
@@ -145,6 +147,23 @@
             <label for="image">Image</label>
             <input type="file" name="" id="image">
             <button style="margin-top: auto;" type="submit">Save</button>
+        </form>
+    </div>
+    <div id="add-meal" class="modal">
+        <form class="container modal-content animate" id="add-form">
+            <div class="imgcontainer">
+                <span style="margin-top: -15px;" onclick="closeModal('add-meal')" class="close" title="Close Modal">&times;</span>
+            </div>
+            <h3>Add New Food Item</h3>
+            <label for="title">Food Name</label>
+            <input type="text" name="" id="title" required placeholder="Food Name">
+            <label for="desc">Description</label>
+            <textarea style="height: 70px;" name="" id="desc" cols="30" rows="10" required placeholder="Food Description"></textarea>
+            <label for="price">Price</label>
+            <input type="number" name="" id="price" required placeholder="Price">
+            <label for="image">Image</label>
+            <input type="file" name="" id="image">
+            <button style="margin-top: auto;" type="submit">Add Food</button>
         </form>
     </div>
     <footer>
