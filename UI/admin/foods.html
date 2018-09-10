@@ -130,6 +130,23 @@
         </div>
         <br>
     </div>
+    <div id="edit-meal" class="modal">
+        <form class="container modal-content animate" id="edit-form">
+            <div class="imgcontainer">
+                <span style="margin-top: -15px;" onclick="closeModal('edit-meal')" class="close" title="Close Modal">&times;</span>
+            </div>
+            <h3>Edit Food Item</h3>
+            <label for="title">Food Name</label>
+            <input type="text" name="" id="title" value="Garnished Wood soup" required placeholder="Food Name">
+            <label for="desc">Description</label>
+            <textarea style="height: 70px;" name="" id="desc" cols="30" rows="10" placeholder="Food Description">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ut, tempora cupiditate! Mollitia ut quia eaque. Consequatur, totam omnis? Laudantium officia facilis explicabo at non ad excepturi ipsa aperiam nam neque?</textarea>
+            <label for="price">Price</label>
+            <input type="number" value="5000" name="" id="price" required placeholder="Price">
+            <label for="image">Image</label>
+            <input type="file" name="" id="image">
+            <button style="margin-top: auto;" type="submit">Save</button>
+        </form>
+    </div>
     <footer>
         <p class="text-center">&copy; 2018 FoodFast</p>
     </footer>
