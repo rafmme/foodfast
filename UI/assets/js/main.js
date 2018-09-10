@@ -11,6 +11,10 @@ const toggleBtn = () => {
     }
 }
 
+const goToOrderpage = () => {
+    window.location.href = 'makeorder.html';
+}
+
 const closeModalForm = (elemID) => {
     const modal = document.getElementById(elemID);
     window.onclick = function (event) {
