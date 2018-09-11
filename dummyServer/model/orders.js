@@ -8,6 +8,7 @@ const orders = [
     customerId: users[0].id,
     quantity: 11,
     deliveryAddress: '234 Allen Rd, Lagos',
+    phoneNumber: '0812345678',
     status: 'pending',
     createdAt: new Date().toISOString(),
     updatedAt: new Date().toISOString()
@@ -18,6 +19,7 @@ const orders = [
     customerId: users[1].id,
     quantity: 20,
     deliveryAddress: 'Jibowu, Yaba, Lagos',
+    phoneNumber: '0812345478',
     status: 'canceled',
     createdAt: new Date().toISOString(),
     updatedAt: new Date().toISOString()
@@ -28,6 +30,7 @@ const orders = [
     customerId: users[0].id,
     quantity: 1,
     deliveryAddress: 'Wuse II, Abuja',
+    phoneNumber: '0812344578',
     status: 'completed',
     createdAt: new Date().toISOString(),
     updatedAt: new Date().toISOString()
@@ -38,6 +41,7 @@ const orders = [
     customerId: users[1].id,
     quantity: 10,
     deliveryAddress: 'Garki, Abuja',
+    phoneNumber: '0812349078',
     status: 'accepted',
     createdAt: new Date().toISOString(),
     updatedAt: new Date().toISOString()
