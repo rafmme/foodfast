@@ -109,4 +109,39 @@ export default class OrderController {
       }
     });
   }
+
+  /**
+      * @description handles placing an order
+      * @param {*} req - Incoming Request object
+      * @param {*} res - Incoming Message
+      * @returns {object} res - Route response
+      */
+  static placeOrder(req, res) {
+    const {
+      foodId,
+      customerId,
+      quantity,
+      phoneNumber,
+      deliveryAddress
+    } = req.body;
+    const order = {
+      id: orders[orders.length - 1].id + 1,
+      foodId: Number.parseInt(foodId, 10),
+      customerId: Number.parseInt(customerId, 10),
+      quantity: Number.parseInt(quantity, 10),
+      deliveryAddress: deliveryAddress.trim(),
+      phoneNumber,
+      status: 'pending',
+      createdAt: new Date().toISOString(),
+      updatedAt: new Date().toISOString()
+    };
+    if (orders.push(order)) {
+      return res.status(201).send({
+        success: true,
+        status: 201,
+        message: 'Order placed successfully',
+        order
+      });
+    }
+  }
 }
