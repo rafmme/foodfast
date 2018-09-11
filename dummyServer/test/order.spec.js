@@ -212,3 +212,111 @@ describe('API endpoint POST /orders/', () => {
       });
   });
 });
+describe('API endpoint PUT /orders/:id', () => {
+  it('it should not update order with same status', (done) => {
+    chai.request(app)
+      .put('/api/v1/orders/1')
+      .send({ status: 'pending' })
+      .end((err, res) => {
+        res.should.have.status(422);
+        expect(res.body.error.message).to.equal('Order can\'t be updated with the same status');
+        expect(res.body.status).to.equal(422);
+        expect(res.body.success).to.equal(false);
+        expect(res.body).to.be.an('object');
+        res.body.should.have.property('error');
+        done();
+      });
+  });
+  it('it should return 400 bad request if input is empty', (done) => {
+    chai.request(app)
+      .put('/api/v1/orders/1')
+      .send()
+      .end((err, res) => {
+        res.should.have.status(400);
+        expect(res.body.error.message).to.equal('Status field is required');
+        expect(res.body.status).to.equal(400);
+        expect(res.body.success).to.equal(false);
+        expect(res.body).to.be.an('object');
+        res.body.should.have.property('error');
+        done();
+      });
+  });
+  it('it should return 400 bad request if input doesn\'t match', (done) => {
+    chai.request(app)
+      .put('/api/v1/orders/1')
+      .send({ status: 'sleeping' })
+      .end((err, res) => {
+        res.should.have.status(400);
+        expect(res.body.error.message).to
+          .equal('Invalid status input, expects one of [pending,canceled,completed or accepted]');
+        expect(res.body.status).to.equal(400);
+        expect(res.body.success).to.equal(false);
+        expect(res.body).to.be.an('object');
+        res.body.should.have.property('error');
+        done();
+      });
+  });
+  it('it should successfully update a specific order', (done) => {
+    chai.request(app)
+      .put('/api/v1/orders/1')
+      .send({ status: 'completed' })
+      .end((err, res) => {
+        res.should.have.status(201);
+        expect(res.body.message).to.equal('Order was updated successfully');
+        expect(res.body.status).to.equal(201);
+        expect(res.body.success).to.equal(true);
+        expect(res.body).to.be.an('object');
+        res.body.should.have.property('message');
+        res.body.should.have.property('order');
+        expect(res.body.order).to.be.an('object');
+        expect(res.body.order.status).to.equal('completed');
+        res.body.order.should.have.keys(
+          'orderId', 'food', 'totalPrice',
+          'customer', 'quantity', 'createdAt',
+          'updatedAt', 'deliveryAddress', 'status'
+        );
+        expect(res.body.order.customer).to.be.an('object');
+        expect(res.body.order.food).to.be.an('object');
+        res.body.order.customer.should.have.keys('userId', 'fullname', 'email');
+        res.body.order.food.should.have.keys(
+          'foodId', 'title', 'description',
+          'price'
+        );
+        expect(res.body.order.food.price * res.body.order.quantity)
+          .to.equal(res.body.order.totalPrice);
+        done();
+      });
+  });
+  it('it should return 400 Bad request if id param is not an integer', (done) => {
+    chai.request(app)
+      .put('/api/v1/orders/helloworld')
+      .send({ status: 'canceled' })
+      .end((err, res) => {
+        res.should.have.status(400);
+        expect(res.body.status).to.equal(400);
+        expect(res.body.success).to.equal(false);
+        expect(res.body).to.be.an('object');
+        expect(res.body.error).to.be.an('object');
+        res.body.should.have.property('error');
+        res.body.error.should.have.property('message');
+        expect(res.body.error.message).to.equal('expects ID param to be an integer');
+        done();
+      });
+  });
+  it('it should return 404 Not Found if order doesn\'t exist', (done) => {
+    chai.request(app)
+      .put('/api/v1/orders/50203')
+      .send({ status: 'accepted' })
+      .end((err, res) => {
+        res.should.have.status(404);
+        expect(res.body.status).to.equal(404);
+        expect(res.body.success).to.equal(false);
+        expect(res.body).to.be.an('object');
+        expect(res.body.error).to.be.an('object');
+        res.body.should.have.property('error');
+        res.body.error.should.have.property('message');
+        expect(res.body.error.message).to.equal('No Order matches the ID of 50203');
+        done();
+      });
+  });
+});
