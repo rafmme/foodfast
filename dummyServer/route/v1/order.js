@@ -12,6 +12,12 @@ orderRouter.get('/orders/', OrderController.getAllOrders)
     OrderValidation.validateOrderInput,
     OrderValidation.verifyFoodAndUser,
     OrderController.placeOrder
+  )
+  .put(
+    '/orders/:id',
+    validateId,
+    OrderValidation.validateOrderUpdateData,
+    OrderController.updateOrder
   );
 
 export default orderRouter;

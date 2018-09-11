@@ -144,4 +144,67 @@ export default class OrderController {
       });
     }
   }
+
+  /**
+      * @description handles updating the status of an order
+      * @param {*} req - Incoming Request object
+      * @param {*} res - Incoming Message
+      * @returns {object} res - Route response
+      */
+  static updateOrder(req, res) {
+    const id = Number.parseInt(req.params.id, 10);
+    const { status } = req.body;
+    const order = orders.find((el => (el.id === id)));
+    if (order && order.status === status) {
+      return res.status(422).send({
+        success: false,
+        status: 422,
+        error: {
+          message: 'Order can\'t be updated with the same status'
+        }
+      });
+    } if (order && order.status !== status) {
+      order.status = status;
+      order.updatedAt = new Date().toISOString();
+      orders[order.id - 1] = order;
+      const foodItem = foods.find(food => (food.id === order.foodId));
+      const customer = users.find(user => (order.customerId === user.id));
+      const customerInfo = {
+        userId: customer.id,
+        fullname: customer.fullname,
+        email: customer.email
+      };
+      const food = {
+        foodId: foodItem.id,
+        title: foodItem.title,
+        description: foodItem.description,
+        price: foodItem.price
+      };
+      const newOrder = {
+        orderId: order.id,
+        customer: customerInfo,
+        food,
+        quantity: order.quantity,
+        totalPrice: order.quantity * food.price,
+        deliveryAddress: order.deliveryAddress,
+        status: order.status,
+        createdAt: order.createdAt,
+        updatedAt: order.updatedAt,
+      };
+
+      return res.status(201).send({
+        success: true,
+        status: 201,
+        message: 'Order was updated successfully',
+        order: newOrder
+      });
+    }
+    return res.status(404).send({
+      success: false,
+      status: 404,
+      error: {
+        message: `No Order matches the ID of ${id}`
+      }
+    });
+  }
 }
