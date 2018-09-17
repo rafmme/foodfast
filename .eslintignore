@@ -1,0 +1,8 @@
+node_modules/
+coverage/
+.coveralls.yml
+.nyc_output
+distDummy/
+dist/
+.env
+UI/
