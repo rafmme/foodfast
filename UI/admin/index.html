@@ -1,0 +1,276 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Admin Home | FoodFast</title>
+    <link rel="stylesheet" href="../assets/css/style.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Pacifo">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:300,400,700">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="shortcut icon" href="../assets/images/favicon.ico" type="image/x-icon">
+</head>
+
+<body>
+    <header id="header">
+        <nav class="topnav" id="myTopnav">
+            <a href="index.html" id="brand">FoodFast</a>
+            <div id="rule"></div>
+            <div class="lnk">
+                <a class="alink" style="display: none;">_</a>
+                <a href="#">
+                    <i class="fa fa-user"></i> Hello! Admin</a>
+                <a href="foods.html">
+                    <i class="fa fa-spoon"></i> Foods</a>
+                <a href="../login.html">
+                    <i class="fa fa-sign-out"></i> Sign out</a>
+            </div>
+            <a href="javascript:void(0);" id="toggle" class="icon" onclick="toggleBtn()">
+                <span></span>
+                <span></span>
+                <span></span>
+            </a>
+        </nav>
+    </header>
+    <div class=" row center">
+        <h2 id="all-orders">All Orders</h2>
+        <div class="row table-padding">
+            <form action="#" method="post">
+                <div class="row order-box-p" style="width: 70%">
+                    <div class="col-3-2">
+                        <input type="search" name="" id="order-search-box" required placeholder="Search orders">
+                    </div>
+                    <div class="col-2-3">
+                        <select>
+                            <option value="all">All</option>
+                            <option value="new">New</option>
+                            <option value="accepted">Accepted</option>
+                            <option value="Deliverd">Completed</option>
+                            <option value="pending">Pending</option>
+                            <option value="pending">Cancelled</option>
+                        </select>
+                    </div>
+                </div>
+            </form>
+            <table>
+                <thead>
+                    <tr>
+                        <th scope="col">ID</th>
+                        <th scope="col">Customer</th>
+                        <th scope="col">Food</th>
+                        <th scope="col">Qty</th>
+                        <th scope="col">Amount</th>
+                        <th scope="col">Date</th>
+                        <th scope="col">Status</th>
+                        <th scope="col"></th>
+                        <th scope="col"></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr ondblclick="showModal('order-info')">
+                        <td data-label="ID">OD45</td>
+                        <td data-label="Customer">ja@ya.com</td>
+                        <td data-label="Food">Fried Burger</td>
+                        <td data-label="Qty">5</td>
+                        <td data-label="Amount">₦1,190.50</td>
+                        <td data-label="Date">08/31/2018</td>
+                        <td data-label="Status">Pending</td>
+                        <td data-label=""><button class="accept-btn">Accept</button></td>
+                        <td data-label=""><button class="reject-btn" onclick="showModal('order-reject')">Reject</button></td>
+                    </tr>
+                    <tr ondblclick="showModal('order-info')">
+                        <td data-label="ID">OD40</td>
+                        <td data-label="Customer">as@hoo.com</td>
+                        <td data-label="Food">Fried Burger</td>
+                        <td data-label="Qty">5</td>
+                        <td data-label="Amount">₦1,190.50</td>
+                        <td data-label="Date">08/31/2018</td>
+                        <td data-label="Status">Completed</td>
+                        <td data-label=""></td>
+                        <td data-label=""></td>
+                    </tr>
+                    <tr ondblclick="showModal('order-info')">
+                        <td data-label="ID">OD58</td>
+                        <td data-label="Customer">ma@hoo.com</td>
+                        <td data-label="Food">Fried Burger</td>
+                        <td data-label="Qty">5</td>
+                        <td data-label="Amount">₦1,190.50</td>
+                        <td data-label="Date">08/31/2018</td>
+                        <td data-label="Status">Accepted</td>
+                        <td data-label=""><button class="accept-btn" onclick="showModal('update')">Update</button></td>
+                        <td data-label=""></td>
+                    </tr>
+                    <tr ondblclick="showModal('order-info')">
+                        <td data-label="ID">OD76</td>
+                        <td data-label="Customer">oa@ya.com</td>
+                        <td data-label="Food">Fried Burger</td>
+                        <td data-label="Qty">5</td>
+                        <td data-label="Amount">₦1,190.50</td>
+                        <td data-label="Date">08/31/2018</td>
+                        <td data-label="Status">Completed</td>
+                        <td data-label=""></td>
+                        <td data-label=""></td>
+                    </tr>
+                    <tr ondblclick="showModal('order-info')">
+                        <td data-label="ID">OD87</td>
+                        <td data-label="Customer">ma@yao.com</td>
+                        <td data-label="Food">Fried Burger</td>
+                        <td data-label="Qty">5</td>
+                        <td data-label="Amount">₦1,190.50</td>
+                        <td data-label="Date">08/31/2018</td>
+                        <td data-label="Status">Cancelled</td>
+                        <td data-label=""></td>
+                        <td data-label=""></td>
+                    </tr>
+                    <tr ondblclick="showModal('order-info')">
+                        <td data-label="ID">OD94</td>
+                        <td data-label="Customer">ja@yao.com</td>
+                        <td data-label="Food">Fried Burger</td>
+                        <td data-label="Qty">50</td>
+                        <td data-label="Amount">₦1,190.50</td>
+                        <td data-label="Date">08/31/2018</td>
+                        <td data-label="Status">Cancelled</td>
+                        <td data-label=""></td>
+                        <td data-label=""></td>
+                    </tr>
+                    <tr ondblclick="showModal('order-info')">
+                        <td data-label="ID">OD568</td>
+                        <td data-label="Customer">ja@yao.com</td>
+                        <td data-label="Food">Fried Burger</td>
+                        <td data-label="Qty">5</td>
+                        <td data-label="Amount">₦1,190.50</td>
+                        <td data-label="Date">08/31/2018</td>
+                        <td data-label="Status">Pending</td>
+                        <td data-label=""><button class="accept-btn">Accept</button></td>
+                        <td data-label=""><button class="reject-btn" onclick="showModal('order-reject')">Reject</button></td>
+                    </tr>
+
+                </tbody>
+            </table>
+        </div>
+        <br>
+    </div>
+    <div id="order-info" class="modal">
+        <div class="container modal-content animate">
+            <div class="imgcontainer">
+                <span style="margin-top: -15px;" onclick="closeModal('order-info')" class="close" title="Close Modal">&times;</span>
+            </div>
+            <h3>Order Information</h3>
+            <div class="row">
+                <div class="col-2">
+                    <label for="orderID">Order ID</label>
+                    <input type="text" name="" id="orderID" value="OD4558-5777" disabled>
+                </div>
+                <div class="col-2">
+                    <div class="mg-left-10">
+                        <label for="customer">Customer</label>
+                        <input type="text" name="" id="customer" value="rafmme@gmail.com" disabled>
+                    </div>
+                </div>
+            </div>
+            <label for="title">Food Item</label>
+            <input type="text" name="" id="title" value="Flying Sphagethti" disabled>
+            <div class="row">
+                <div class="col-2"> <label for="qty">Quantity</label>
+                    <input type="number" value="2" name="" id="qty" disabled>
+                </div>
+                <div class="col-2">
+                    <div class="mg-left-10">
+                        <label for="price">Total Price</label>
+                        <input type="text" value="₦ 16,700.50" name="" id="price" disabled>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-2">
+                    <label for="phone">Phone Number</label>
+                    <input type="tel" name="" id="phone" value="08112345678" disabled placeholder="Phone Number">
+                </div>
+                <div class="col-2">
+                    <div class="mg-left-10">
+                        <label for="address">Delivery Address</label>
+                        <input type="text" name="" id="address" value="235 Ikorodu, Lagos" disabled placeholder="Delivery Location">
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-2"><label for="date">Date & Time Placed</label>
+                    <input type="text" name="" id="date" value="'2018-09-09T19:42:59' " disabled placeholder="Date of Order">
+                </div>
+                <div class="col-2">
+                    <div class="mg-left-10">
+                        <label for="status">Order Status</label>
+                        <input type="text" name="" id="status" value="Completed" disabled>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal" id="order-reject">
+        <div class="container modal-content animate">
+            <div class="imgcontainer">
+                <span style="margin-top: -15px; margin-left: 5px;" onclick="closeModal('order-reject')" class="close" title="Close Modal">&times;</span>
+            </div>
+            <h3>Confirm Action</h3>
+            <h4 class="text-center" style="margin-top: 50px;">
+                Are you sure you want to cancel Order OD 3455-5888 ?
+            </h4>
+            <div class="row" style="margin-bottom: 15px;">
+                <div class="col-2">
+                    <button class="btn accept-btn" onclick="closeModal('order-reject')">Yes</button>
+                </div>
+                <div class="col-2">
+                    <div class="mg-left-10">
+                        <button class="btn reject-btn mg-top-5" onclick="closeModal('order-reject')">No</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="update" class="modal">
+        <form class="container modal-content animate" id="update-form">
+            <div class="imgcontainer">
+                <span style="margin-top: -15px;" onclick="closeModal('update')" class="close" title="Close Modal">&times;</span>
+            </div>
+            <h3>Update Order</h3>
+            <div class="row">
+                <div class="col-2">
+                    <label for="orderID">Order ID</label>
+                    <input type="text" name="" id="orderID" value="OD4558-5777" disabled>
+                </div>
+                <div class="col-2">
+                    <div class="mg-left-10">
+                        <label for="customer">Customer</label>
+                        <input type="text" name="" id="customer" value="rafmme@gmail.com" disabled>
+                    </div>
+                </div>
+            </div>
+            <label for="title">Food</label>
+            <input type="text" name="" id="title" disabled value="Fried Water">
+            <div class="row">
+                <div class="col-2"> <label for="qty">Quantity</label>
+                    <input type="number" value="2" name="" id="qty" disabled>
+                </div>
+                <div class="col-2">
+                    <div class="mg-left-10">
+                        <label for="price">Total Price</label>
+                        <input type="text" value="₦ 16,700.50" name="" id="price" disabled>
+                    </div>
+                </div>
+            </div>
+            <label for="Status">Mark as completed</label>
+            <select name="" id="status">
+                <option value=""></option>
+                <option value="completed">completed</option>
+            </select>
+            <button style="margin-top: auto;" type="submit">Modify Order</button>
+        </form>
+    </div>
+    <footer>
+        <p class="text-center">&copy; 2018 FoodFast</p>
+    </footer>
+    <script src="../assets/js/main.js"></script>
+</body>
+
+</html>
