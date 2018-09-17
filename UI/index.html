@@ -1,0 +1,159 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Home | FoodFast</title>
+    <link rel="stylesheet" href="./assets/css/style.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Pacifo">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:300,400,700">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="shortcut icon" href="./assets/images/favicon.ico" type="image/x-icon">
+</head>
+
+<body>
+    <header class="header">
+        <nav class="topnav" id="myTopnav">
+            <a href="#home" id="brand">FoodFast</a>
+            <div id="rule"></div>
+            <div class="lnk">
+                <a class="alink" style="display: none;">_</a>
+                <a href="#works">
+                    <i class="fa fa-info-circle"></i> How it works</a>
+                <a href="#contact">
+                    <i class="fa fa-envelope"></i> Contact Us</a>
+                <a href="login.html">
+                    <i class="fa fa-sign-in"></i> Login</a>
+                <a href="signup.html">
+                    <i class="fa fa-user-plus"></i> Sign Up</a>
+            </div>
+            <a href="javascript:void(0);" id="toggle" class="icon" onclick="toggleBtn()">
+                <span></span>
+                <span></span>
+                <span></span>
+            </a>
+        </nav>
+    </header>
+    <div class="showcase">
+        <div class="message text-center">
+            <h3 class="animated fadeIn">Getting hungry?</h3>
+            <h3 class="fadeIn animated">Our yummy foods are at your stomach's service</h3>
+            <button id="showcase-btn" onclick="location.href = 'login.html'">Get Started!</button>
+        </div>
+    </div>
+    <section id="services" class="section-padding">
+        <h2 class="text-center">Why FoodFast?</h2>
+        <p class="section-p-15" style="word-break: keep-all;">At FoodFast, We employ the services of the best chefs around the milky way to produce highly
+            nutritious, delicious and soul warming foods to cater for the stomach of our customers</p>
+        <p class="section-p-15" style="word-break: keep-all;">FoodFast caters for the need of each of its customers through our renowned personalised food
+            offer. We also provide long term discount to our loyal customers </p>
+    </section>
+    <section id="works" class="section-padding">
+        <div class="text-center">
+            <h2>How it works</h2>
+            <p class="section-p-15 sec-header-p">Are you ready to satisfy yourself with our world class food, here is how
+                to get started</p>
+        </div>
+        <div class="row card-2">
+            <div class="col-4">
+                <div class="imgcontainer">
+                    <img src="./assets/images/icons8_Add_User_Group_Woman_Man_100px.png" class="col-icon" alt="">
+                    <h4>CREATE AN ACCOUNT</h4>
+                </div>
+            </div>
+            <div class="col-4">
+                <div class="imgcontainer">
+                    <img src="./assets/images/icons8_Buying_100px.png" class="col-icon" alt="">
+                    <h4>MAKE ORDER</h4>
+                </div>
+            </div>
+            <div class="col-4">
+                <div class="imgcontainer">
+                    <img src="./assets/images/icons8_Deliver_Food_100px.png" class="col-icon" alt="">
+                    <h4>WE DELIVER</h4>
+                </div>
+            </div>
+            <div class="col-4">
+                <div class="imgcontainer">
+                    <img src="./assets/images/icons8_Stomach_100px.png" class="col-icon" alt="">
+                    <h4>SATISFY YOUR STOMACH</h4>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section id="testimonials" class="section-padding">
+        <div class="text-center">
+            <h2>Testimonials</h2>
+            <p class="section-p-15 sec-header-p">See what some of our users have to say about our service</p>
+        </div>
+        <div class="row">
+            <div class="col-3">
+                <div>
+                    <div class="imgcontainer">
+                        <img src="./assets/images/35.jpg" alt="Avatar" class="avatar shadow">
+                        <h4 style="margin-bottom: -10px;">Cara Finer</h4>
+                    </div>
+                    <blockquote>
+                        <p class="section-p-15 mg-top-2">Food Fast has the best Fried Water I have ever tasted in my life</p>
+                    </blockquote>
+                </div>
+            </div>
+            <div class="col-3">
+                <div>
+                    <div class="imgcontainer">
+                        <img src="./assets/images/34.jpg" alt="Avatar" class="avatar shadow">
+                        <h4 style="margin-bottom: -10px;">Donald Blunt</h4>
+                    </div>
+                    <blockquote>
+                        <p class="section-p-15 mg-top-2">Food Fast has the best Jollof Rice in Africa</p>
+                    </blockquote>
+                </div>
+            </div>
+            <div class="col-3">
+                <div>
+                    <div class="imgcontainer">
+                        <img src="./assets/images/32.jpg" alt="Avatar" class="avatar shadow">
+                        <h4 style="margin-bottom: -10px;">John Opengate</h4>
+                    </div>
+                    <blockquote>
+                        <p class="section-p-15 mg-top-2">Food Fast has the best pounded yam I have ever tasted in my life</p>
+                    </blockquote>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact" class="section-padding">
+        <div class="text-center">
+            <h2>Contact Us</h2>
+            <p class="section-p-15 sec-header-p">Got any enquires or information for us? feel free to reach out to us via
+                the form below</p>
+        </div>
+        <div class="row">
+            <div class="col-2">
+                <form action="" method="post">
+                    <label for="fname">Name</label>
+                    <input type="text" id="fname" placeholder="Your Names..." required>
+                    <label for="email">Email</label>
+                    <input type="email" id="email" placeholder="Your email address.." required>
+                    <label for="subject">Title</label>
+                    <input type="text" name="" id="subject" placeholder="Your Message Title" required>
+                    <label for="message">Your Message</label>
+                    <textarea name="" id="message" cols="30" rows="10" placeholder="Your message..." required></textarea>
+                    <button type="submit" class="btn" style="margin-top: 15px;">Send Message</button>
+                </form>
+            </div>
+            <div class="col-2">
+                <div id="map"></div>
+            </div>
+        </div>
+    </section>
+    <footer>
+        <p class="text-center">&copy; 2018 FoodFast</p>
+    </footer>
+    <script src="../UI/assets/js/main.js"></script>
+    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBFVdJhdR5uUqsFkjeHHDURlBEcgShCUdI&callback=initMap&region=NG"></script>
+</body>
+
+</html>

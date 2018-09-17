@@ -1,0 +1,149 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Make Order | FoodFast</title>
+    <link rel="stylesheet" href="./assets/css/style.css">
+    <link rel="stylesheet" href="./assets/css/order.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Pacifo">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:300,400,700">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="shortcut icon" href="./assets/images/favicon.ico" type="image/x-icon">
+</head>
+
+<body>
+    <header id="header">
+        <nav class="topnav" id="myTopnav">
+            <a href="userhome.html" id="brand">FoodFast</a>
+            <div id="rule"></div>
+            <div class="lnk">
+                <a class="alink" style="display: none;">_</a>
+                <a href="userhome.html">
+                    <i class="fa fa-home"></i> Home</a>
+                <a href="profile.html">
+                    <i class="fa fa-user"></i> My Profile</a>
+                <a href="userorders.html">
+                    <i class="fa fa-money"></i> Orders</a>
+                <a href="index.html">
+                    <i class="fa fa-sign-out"></i> Sign out</a>
+            </div>
+            <a href="javascript:void(0);" id="toggle" class="icon" onclick="toggleBtn()">
+                <span></span>
+                <span></span>
+                <span></span>
+            </a>
+        </nav>
+    </header>
+    <div class="order-cart">
+        <div class="title">
+            Order Cart
+            <div style="float: right;"><a href="javascript:void(0);" class="link-btn">Empty Cart</a></div>
+        </div>
+
+        <div class="item">
+            <div class="buttons">
+                <span class="delete-btn"></span>
+            </div>
+
+            <div class="image">
+                <img src="./assets/images/1.jpg" alt="" />
+            </div>
+
+            <div class="description">
+                <span>Flying Doughnuts</span>
+                <span>yummy soul foods</span>
+            </div>
+
+            <div class="quantity">
+                <button class="plus-btn action-btn" type="button" name="button">
+                    <img src="./assets/images/plus.svg" alt="" />
+                </button>
+                <input type="text" name="name" value="5">
+                <button class="minus-btn action-btn" type="button" name="button">
+                    <img src="./assets/images/minus.svg" alt="" />
+                </button>
+            </div>
+            <div class="total-price">₦ 2500.00</div>
+        </div>
+        <div class="item">
+            <div class="buttons">
+                <span class="delete-btn"></span>
+            </div>
+
+            <div class="image">
+                <img src="./assets/images/1.jpg" alt="" />
+            </div>
+
+            <div class="description">
+                <span>Zinger Burger</span>
+                <span>yummy soul foods</span>
+            </div>
+
+            <div class="quantity">
+                <button class="plus-btn action-btn" type="button" name="button">
+                    <img src="./assets/images/plus.svg" alt="" />
+                </button>
+                <input type="text" name="name" value="1">
+                <button class="minus-btn action-btn" type="button" name="button">
+                    <img src="./assets/images/minus.svg" alt="" />
+                </button>
+            </div>
+            <div class="total-price">₦ 549.20</div>
+        </div>
+
+        <div class="item">
+            <div class="buttons">
+                <span class="delete-btn"></span>
+            </div>
+
+            <div class="image">
+                <img src="./assets/images/1.jpg" alt="" />
+            </div>
+
+            <div class="description">
+                <span>Flying Doughnuts</span>
+                <span>yummy soul foods</span>
+            </div>
+
+            <div class="quantity">
+                <button class="plus-btn action-btn" type="button" name="button">
+                    <img src="./assets/images/plus.svg" alt="" />
+                </button>
+                <input type="text" name="name" value="1">
+                <button class="minus-btn action-btn" type="button" name="button">
+                    <img src="./assets/images/minus.svg" alt="" />
+                </button>
+            </div>
+            <div class="total-price">₦ 7500.50</div>
+        </div>
+        <h3 class="text-center">Total Price : ₦ 16,700.50</h3>
+        <button type="submit" class="order-btn" onclick="showModal('make-order')">Order</button>
+    </div>
+    <div id="make-order" class="modal">
+        <form class="container modal-content animate" id="order-form">
+            <div class="imgcontainer">
+                <span style="margin-top: -15px;" onclick="closeModal('make-order')" class="close" title="Close Modal">&times;</span>
+            </div>
+            <h3>Place Order</h3>
+            <label for="title">Food Name</label>
+            <input type="text" name="" id="title" value="Flying Sphagethti" disabled>
+            <label for="qty">Quantity</label>
+            <input type="number" value="2" name="" id="qty" disabled>
+            <label for="price">Total Price</label>
+            <input type="text" value="₦ 16,700.50" name="" id="price" disabled>
+            <label for="phone">Phone Number</label>
+            <input type="tel" name="" id="phone" value="08112345678" required placeholder="Phone Number">
+            <label for="address">Delivery Address</label>
+            <input type="text" name="" id="address" value="235 Ikorodu, Lagos" required placeholder="Delivery Location">
+            <button style="margin-top: auto;" type="submit" onclick="location.href = 'home.html'">Place Order</button>
+        </form>
+    </div>
+    <footer>
+        <p class="text-center">&copy; 2018 FoodFast</p>
+    </footer>
+    <script src="./assets/js/main.js"></script>
+</body>
+
+</html>
