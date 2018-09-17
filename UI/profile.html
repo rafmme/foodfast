@@ -1,0 +1,62 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>User Profile | FoodFast</title>
+    <link rel="stylesheet" href="./assets/css/style.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Pacifo">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:300,400,700">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="shortcut icon" href="./assets/images/favicon.ico" type="image/x-icon">
+</head>
+
+<body>
+    <header id="header">
+        <nav class="topnav" id="myTopnav">
+            <a href="userhome.html" id="brand">FoodFast</a>
+            <div id="rule"></div>
+            <div class="lnk">
+                <a class="alink" style="display: none;">_</a>
+                <a href="userhome.html">
+                    <i class="fa fa-user"></i> Home</a>
+                <a href="userorders.html">
+                    <i class="fa fa-money"></i> Orders</a>
+                <a href="index.html">
+                    <i class="fa fa-sign-out"></i> Signout</a>
+            </div>
+            <a href="javascript:void(0);" id="toggle" class="icon" onclick="toggleBtn()">
+                <span></span>
+                <span></span>
+                <span></span>
+            </a>
+        </nav>
+    </header>
+    <div class="row center">
+        <h3>My Account Information</h3>
+        <img src="./assets/images/icons8_Woman_Profile_100px.png" height="70px" alt="">
+    </div>
+    <div class="form-page-content mg-top-10 card-2 border-line">
+            <form action="userhome.html" method="post">
+                <label for="fullname">Full Name
+                </label>
+                <input type="text" name="" id="fullname" value="Johny Walker" disabled>
+                <label for="email">E-mail
+                </label>
+                <input type="email" name="" id="email"value="walkerjohn@race.com" disabled>
+                <label for="phonenumber">Phone Number</label>
+                <input type="tel" name="" id="phonenumber" value="08123456789" disabled>
+                <label for="address">Home Address</label>
+                <input type="text" name="" id="address" placeholder="No 23, Astra, Lozanckes." disabled>
+                <button type="submit" class="btn mg-top-10">Edit Profile</button>
+            </form>
+        </div>
+    <footer>
+        <p class="text-center">&copy; 2018 FoodFast</p>
+    </footer>
+    <script src="../UI/assets/js/main.js"></script>
+    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBFVdJhdR5uUqsFkjeHHDURlBEcgShCUdI&callback=initMap&region=NG"></script>
+</body>
+
+</html>
