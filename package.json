@@ -13,7 +13,7 @@
     "prestart": "npm run build-server",
     "start": "node distDummy/app.js",
     "start:dev": "nodemon --exec babel-node dummyServer/app.js",
-    "test": "echo \"Echo: no test specified\" && exit 0",
+    "test": "nyc --reporter=html --reporter=text mocha ./dummyServer/test/**.spec.js --recursive --require babel-polyfill --require babel-register --exit",
     "coverage": "nyc report --reporter=text-lcov"
   },
   "repository": {
