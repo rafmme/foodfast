@@ -10,14 +10,17 @@ cache:
     - "node_modules"
 install:
   - npm install
+
 before_script:
+  - psql -c 'drop database if exists travis;' -U postgres
+  - psql -c 'create database travis;' -U postgres
+  - npm install
   - curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./cc-test-reporter
   - chmod +x ./cc-test-reporter
   - ./cc-test-reporter before-build
-script:
-  - npm test
-after_success:
-  - npm run coverage
-  - ./cc-test-reporter after-build --exit-code
 
-$TRAVIS_TEST_RESULT
+script:
+  - npm run coverage
+
+after_script:
+  - ./cc-test-reporter after-build --exit-code $TRAVIS_TEST_RESULT
