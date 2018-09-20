@@ -75,8 +75,8 @@ export default class OrderValidation {
       customerId
     } = req.body;
 
-    const foodItem = foods.find(food => (food.id === foodId));
-    const customer = users.find(user => (customerId === user.id));
+    const foodItem = foods.find(food => (food.id === Number.parseInt(foodId, 10)));
+    const customer = users.find(user => (user.id === Number.parseInt(customerId, 10)));
 
     if (!foodItem) {
       error.foodId = `Order can't be placed because Food with ID ${foodId} doesn't exist`;
@@ -90,6 +90,37 @@ export default class OrderValidation {
         success: false,
         status: 404,
         error,
+      });
+    }
+    return next();
+  }
+
+  /**
+ * @description - Check if Order update data is correct
+ * @param {object} req HTTP Request
+ * @param {object} res HTTP Response
+ * @param {object} next call next funtion/handler
+ * @returns {object} returns res parameter
+ */
+  static validateOrderUpdateData(req, res, next) {
+    const { status } = req.body;
+    const expectedInput = ['pending', 'accepted', 'canceled', 'completed'];
+    if (status === undefined) {
+      return res.status(400).send({
+        success: false,
+        status: 400,
+        error: {
+          message: 'Status field is required'
+        }
+      });
+    }
+    if (!expectedInput.includes(status)) {
+      return res.status(400).send({
+        success: false,
+        status: 400,
+        error: {
+          message: 'Invalid status input, expects one of [pending,canceled,completed or accepted]'
+        }
       });
     }
     return next();
