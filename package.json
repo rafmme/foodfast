@@ -5,15 +5,16 @@
   "main": "app.js",
   "scripts": {
     "build": "npm run clean && npm run build-server",
-    "clean": "rimraf distDummy && mkdir distDummy",
-    "build-server": "babel -d ./distDummy ./dummyServer -s",
-    "lint": "eslint \"dummyServer/**/*.js\" app.js --fix",
+    "clean": "rimraf dist && mkdir dist",
+    "build-server": "babel -d ./dist ./server -s",
+    "lint": "eslint \"server/**/*.js\" app.js --fix",
     "precommit": "npm run lint && npm test --no-verify",
     "prepush": "npm run lint && npm test",
     "postinstall": "npm run build",
-    "start": "node distDummy/app.js",
-    "start:dev": "nodemon --exec babel-node dummyServer/app.js",
-    "test": "nyc --reporter=html --reporter=lcov --reporter=text-lcov --reporter=text mocha ./dummyServer/test/**.spec.js --recursive --require babel-polyfill --require babel-register --exit",
+    "start": "cross-env NODE_ENV=production node dist/app.js",
+    "start:dev": "cross-env NODE_ENV=development nodemon --exec babel-node server/app.js",
+    "test": "echo \"Echo: no test specified\" && exit 0",
+    "server-test": "cross-env NODE_ENV=test nyc --reporter=html --reporter=lcov --reporter=text-lcov --reporter=text mocha ./server/test/**.spec.js --recursive --require babel-polyfill --require babel-register --exit 0",
     "coverage": "nyc --reporter=lcov --reporter=text-lcov npm run test"
   },
   "repository": {
@@ -35,10 +36,13 @@
     "babel-preset-stage-0": "^6.24.1",
     "bcrypt": "^2.0.1",
     "body-parser": "^1.18.2",
+    "cross-env": "^5.2.0",
     "dotenv": "^5.0.1",
     "express": "^4.16.3",
     "express-validator": "^5.3.0",
+    "pg": "^7.4.3",
     "rimraf": "^2.6.2",
+    "uuid": "^3.3.2",
     "validator": "^9.4.1",
     "volleyball": "^1.4.1"
   },
@@ -69,9 +73,10 @@
   "nyc": {
     "exclude": [
       "server/test",
-      "dummyServer/test",
+      "dummyServer/",
       "distDummy/",
-      "UI"
+      "UI",
+      "dist/"
     ]
   }
 }
