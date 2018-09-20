@@ -13,8 +13,8 @@
     "postinstall": "npm run build",
     "start": "node distDummy/app.js",
     "start:dev": "nodemon --exec babel-node dummyServer/app.js",
-    "test": "nyc --reporter=html --reporter=text mocha ./dummyServer/test/**.spec.js --recursive --require babel-polyfill --require babel-register --exit",
-    "coverage": "nyc report --reporter=text-lcov"
+    "test": "nyc --reporter=html --reporter=lcov --reporter=text-lcov --reporter=text mocha ./dummyServer/test/**.spec.js --recursive --require babel-polyfill --require babel-register --exit",
+    "coverage": "nyc --reporter=lcov --reporter=text-lcov npm run test"
   },
   "repository": {
     "type": "git",
