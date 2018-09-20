@@ -10,7 +10,7 @@
     "lint": "eslint \"dummyServer/**/*.js\" app.js --fix",
     "precommit": "npm run lint && npm test --no-verify",
     "prepush": "npm run lint && npm test",
-    "prestart": "npm run build-server",
+    "postinstall": "npm run build",
     "start": "node distDummy/app.js",
     "start:dev": "nodemon --exec babel-node dummyServer/app.js",
     "test": "nyc --reporter=html --reporter=text mocha ./dummyServer/test/**.spec.js --recursive --require babel-polyfill --require babel-register --exit",
