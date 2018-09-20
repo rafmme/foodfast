@@ -6,3 +6,4 @@ distDummy/
 dist/
 .env
 UI/
+dummyServer/
