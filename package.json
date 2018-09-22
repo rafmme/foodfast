@@ -14,8 +14,12 @@
     "start": "cross-env NODE_ENV=production node dist/app.js",
     "start:dev": "cross-env NODE_ENV=development nodemon --exec babel-node server/app.js",
     "test": "echo \"Echo: no test specified\" && exit 0",
-    "server-test": "cross-env NODE_ENV=test nyc --reporter=html --reporter=lcov --reporter=text-lcov --reporter=text mocha ./server/test/**.spec.js --recursive --require babel-polyfill --require babel-register --exit 0",
-    "coverage": "nyc --reporter=lcov --reporter=text-lcov npm run test"
+    "server-test": "cross-env NODE_ENV=test nyc --reporter=html --reporter=lcov --reporter=text-lcov --reporter=text mocha ./server/test/**.spec.js --recursive --require babel-polyfill --require babel-register --exit",
+    "coverage": "nyc --reporter=lcov --reporter=text-lcov npm run test",
+    "drop:tables": "babel-node server/migrations/drop/drop-tables.js",
+    "create:tables": "babel-node server/migrations/create/create_tables.js",
+    "db:migration": "npm run drop:tables && npm run create:tables",
+    "seed:db": "babel-node server/seeders/users.js && babel-node server/seeders/foods.js && babel-node server/seeders/orders.js"
   },
   "repository": {
     "type": "git",
