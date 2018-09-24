@@ -5,8 +5,8 @@ env:
   global:
     - CC_TEST_REPORTER_ID=a3d0951117a04778d1151339dfcd7793e0e0209707b16169d7284df4b08d1d28
     - NODE_ENV=test
-    - JWT_KEY = Andela21
-    - TEST_DB = postgresql://postgres@localhost:5432/foodfast_test
+    - JWT_KEY=Andela21
+    - TEST_DB=postgresql://postgres@localhost:5432/foodfast_test
 cache:
   directories:
     - "node_modules"
@@ -27,5 +27,5 @@ before_script:
 script:
   - npm run coverage
 
-after_script:
+after_success:
   - ./cc-test-reporter after-build --exit-code $TRAVIS_TEST_RESULT

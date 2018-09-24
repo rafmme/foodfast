@@ -1,3 +1,41 @@
+import jwt from 'jsonwebtoken';
+import dotenv from 'dotenv';
+import bcrypt from 'bcrypt';
+
+dotenv.config();
+const { JWT_KEY } = process.env;
+
+/**
+ * @description a function for generating a JWT token
+ * @param {*} data data to encode
+ * @returns {string} generated token
+ */
+const generateToken = (data) => {
+  const token = jwt.sign(data, JWT_KEY, { expiresIn: '12h' });
+  return token;
+};
+
+/**
+ * @description a function for encrypting password
+ * @param {string} password
+ * @returns {string} encrypted password
+ */
+const encryptPassword = (password) => {
+  const encryptedPassword = bcrypt.hashSync(password, 10);
+  return encryptedPassword;
+};
+
+/**
+ * @description a function to check if password matches the encrypted one
+ * @param {string} encryptedPassword
+ * @param {string} password
+ * @returns {boolean} true if the password matches
+ */
+const checkIfPasswordMatch = (encryptedPassword, password) => {
+  const isAMatch = bcrypt.compareSync(password, encryptedPassword);
+  return isAMatch;
+};
+
 /**
  * @function
  * @description a function to convert a string in underscore to camelCase
@@ -72,4 +110,7 @@ export {
   convertToCamelCase,
   convertToUnderscore,
   changeObjectKeysToCamelCase,
+  generateToken,
+  encryptPassword,
+  checkIfPasswordMatch
 };

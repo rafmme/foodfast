@@ -4,6 +4,7 @@ import bodyParser from 'body-parser';
 import express from 'express';
 import logger from 'volleyball';
 import expressValidation from 'express-validator';
+import apiRouter from './route/api';
 
 // Create the express application
 const app = express();
@@ -22,6 +23,7 @@ app.use(logger);
 app.use(expressValidation());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
+app.use('/', apiRouter);
 
 app.get('/', (req, res) => res.status(200).send({
   message: 'Welcome to Fast Food Fast app'
