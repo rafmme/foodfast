@@ -1,6 +1,7 @@
 import jwt from 'jsonwebtoken';
 import dotenv from 'dotenv';
 import bcrypt from 'bcrypt';
+import validator from 'validator';
 
 dotenv.config();
 const { JWT_KEY } = process.env;
@@ -106,11 +107,33 @@ const changeObjectKeysToCamelCase = (obj) => {
   return newObj;
 };
 
+/**
+ * @description a middleware to validate if request id param is UUID version 4
+ * @param {*} req Request
+ * @param {*} res Response
+ * @param {*} next
+ * @returns {*} error message if not UUID
+ */
+const validateIdParam = (req, res, next) => {
+  const { id } = req.params;
+  if (validator.isUUID(id, 4)) {
+    return next();
+  }
+  return res.status(400).send({
+    success: false,
+    status: 400,
+    error: {
+      message: 'Request ID param is not valid'
+    }
+  });
+};
+
 export {
   convertToCamelCase,
   convertToUnderscore,
   changeObjectKeysToCamelCase,
   generateToken,
   encryptPassword,
-  checkIfPasswordMatch
+  checkIfPasswordMatch,
+  validateIdParam
 };

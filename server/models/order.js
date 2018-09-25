@@ -1,6 +1,7 @@
 import uuidv4 from 'uuid/v4';
 import DB from '../helpers/dbUtils/dbConn';
 import Model from './model';
+import { changeObjectKeysToCamelCase } from '../helpers/utils';
 
 /**
  * @class Order
@@ -49,7 +50,7 @@ class Order extends Model {
     };
     try {
       const res = await DB.query(query);
-      promise = new Promise(resolve => resolve(res.rows[0]));
+      promise = new Promise(resolve => resolve(changeObjectKeysToCamelCase(res.rows[0])));
       return promise;
     } catch (err) {
       promise = new Promise((resolve, reject) => reject(err));

@@ -113,6 +113,8 @@ class Model {
         promise = new Promise((resolve) => {
           const result = changeObjectKeysToCamelCase(res.rows[0]);
           const obj = new this(result, result.id);
+          obj.createdAt = result.createdAt;
+          obj.updatedAt = result.updatedAt;
           resolve(obj);
         });
         return promise;
@@ -152,6 +154,8 @@ class Model {
           } else if (res.rows.length === 1) {
             const result = changeObjectKeysToCamelCase(res.rows[0]);
             const obj = new this(result, result.id);
+            obj.createdAt = result.createdAt;
+            obj.updatedAt = result.updatedAt;
             resolve(obj);
           } else {
             const newResultArray = res.rows.map(el => changeObjectKeysToCamelCase(el));
