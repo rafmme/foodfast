@@ -9,6 +9,11 @@ authRouter.post(
   UserValidation.validateSignUpData,
   UserValidation.checkIfUserExist,
   AuthController.createUser
-);
+)
+  .post(
+    '/auth/login',
+    UserValidation.validateSignInData,
+    AuthController.loginUser
+  );
 
 export default authRouter;

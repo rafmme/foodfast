@@ -69,4 +69,36 @@ export default class UserValidation {
     }
     return next();
   }
+
+  /**
+ * @description - Validate Sign in data
+ *
+ * @param {object} req HTTP Request
+ * @param {object} res HTTP Response
+ * @param {object} next call next funtion/handler
+ * @returns {object} returns res parameter
+ */
+  static validateSignInData(req, res, next) {
+    const error = {};
+    req.sanitizeBody('password').trim();
+    req.sanitizeBody('email').trim();
+
+    req.checkBody('password', 'Password is required, must be between 8-20 characters')
+      .notEmpty().trim().isLength({ min: 8, max: 20 })
+      .isString();
+    req.checkBody('email', 'Email is required, and must be a valid email')
+      .isEmail().trim();
+    const errors = req.validationErrors();
+    if (errors) {
+      errors.forEach((e) => {
+        error[e.param] = e.msg;
+      });
+      return res.status(400).send({
+        success: false,
+        status: 400,
+        error,
+      });
+    }
+    return next();
+  }
 }
