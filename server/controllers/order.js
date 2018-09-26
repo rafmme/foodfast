@@ -64,4 +64,67 @@ export default class OrderController {
       });
     }
   }
+
+  /**
+    * @description handles fetching of one specific order
+    * @param {*} req - Incoming Request object
+    * @param {*} res - Incoming Message
+    * @returns {object} res - Route response
+    */
+  static async getOrder(req, res) {
+    try {
+      const { id } = req.params;
+      const order = await Order.find({ where: { id } });
+      if (order) {
+        const food = await Food.findById(order.foodId);
+        const customer = await User.findById(order.customerId);
+        const customerInfo = {
+          userId: customer.id,
+          fullname: customer.fullname,
+          email: customer.email
+        };
+        const foodItem = {
+          foodId: food.id,
+          title: food.title,
+          description: food.description,
+          imageUrl: food.imageUrl,
+          price: food.price
+        };
+        const newOrder = {
+          orderId: order.id,
+          customer: customerInfo,
+          food: foodItem,
+          quantity: order.quantity,
+          totalPrice: order.totalPrice,
+          deliveryAddress: order.deliveryAddress,
+          phoneNumber: order.phoneNumber,
+          status: order.status,
+          createdAt: order.createdAt,
+          updatedAt: order.updatedAt,
+        };
+
+        return res.status(200).send({
+          success: true,
+          status: 200,
+          message: 'Order was fetched successfully',
+          order: newOrder
+        });
+      }
+      return res.status(404).send({
+        success: false,
+        status: 404,
+        error: {
+          message: `No Order matches the ID of ${id}`
+        }
+      });
+    } catch (error) {
+      return res.status(500).send({
+        success: false,
+        status: 500,
+        error: {
+          message: 'An error occured on the server'
+        }
+      });
+    }
+  }
 }
