@@ -43,7 +43,23 @@ const authorizeUser = (req, res, next) => {
     },
   });
 };
+
+const checkIfUserIsAdmin = (req, res, next) => {
+  const { isAdmin } = req.user;
+  if (isAdmin === false) {
+    return next();
+  }
+  return res.status(403).send({
+    success: false,
+    status: 403,
+    error: {
+      message: 'An Admin account can\'t be used to place an Order'
+    }
+  });
+};
+
 export {
   authorizeUser,
-  authenticateUser
+  authenticateUser,
+  checkIfUserIsAdmin
 };
