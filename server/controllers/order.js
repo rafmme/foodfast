@@ -127,4 +127,77 @@ export default class OrderController {
       });
     }
   }
+
+  /**
+    * @description handles updating the status of an order
+    * @param {*} req - Incoming Request object
+    * @param {*} res - Incoming Message
+    * @returns {object} res - Route response
+    */
+  static async updateOrder(req, res) {
+    try {
+      const { id } = req.params;
+      const { status } = req.body;
+      const order = await Order.findById(id);
+      if (order && order.status === status) {
+        return res.status(422).send({
+          success: false,
+          status: 422,
+          error: {
+            message: 'Order can\'t be updated with the same status'
+          }
+        });
+      } if (order && order.status !== status) {
+        const updatedOrder = await order.update(req.body);
+        const foodItem = await Food.findById(order.foodId);
+        const customer = await User.findById(order.customerId);
+        const customerInfo = {
+          userId: customer.id,
+          fullname: customer.fullname,
+          email: customer.email
+        };
+        const food = {
+          foodId: foodItem.id,
+          title: foodItem.title,
+          description: foodItem.description,
+          imageUrl: foodItem.imageUrl,
+          price: foodItem.price
+        };
+        const orderInfo = {
+          orderId: updatedOrder.id,
+          customer: customerInfo,
+          food,
+          quantity: updatedOrder.quantity,
+          totalPrice: updatedOrder.totalPrice,
+          phoneNumber: updatedOrder.phoneNumber,
+          deliveryAddress: updatedOrder.deliveryAddress,
+          status: updatedOrder.status,
+          createdAt: updatedOrder.createdAt,
+          updatedAt: updatedOrder.updatedAt,
+        };
+
+        return res.status(200).send({
+          success: true,
+          status: 200,
+          message: 'Order was updated successfully',
+          order: orderInfo
+        });
+      }
+      return res.status(404).send({
+        success: false,
+        status: 404,
+        error: {
+          message: `No Order matches the ID of ${id}`
+        }
+      });
+    } catch (error) {
+      return res.status(500).send({
+        success: false,
+        status: 500,
+        error: {
+          message: 'An error occured on the server'
+        }
+      });
+    }
+  }
 }
