@@ -1,6 +1,7 @@
 import chai, { expect } from 'chai';
 import chaiHttp from 'chai-http';
 import app from '../app';
+import mockOrders from './mockData/order';
 import {
   adminToken,
   user1Token,
@@ -378,6 +379,152 @@ describe('API endpoint PUT /orders/:id', () => {
         expect(res.body.error).to.be.an('object');
         res.body.error.should.have.property('message');
         expect(res.body.error.message).to.equal('Token is invalid, You need to log in again');
+        done();
+      });
+  });
+});
+
+describe('API endpoint POST /orders/', () => {
+  it('it should successfully place an order', (done) => {
+    chai.request(app)
+      .post('/api/v1/orders/')
+      .set({ authorization: `Bearer ${user1Token}` })
+      .send(mockOrders[0])
+      .end((err, res) => {
+        res.should.have.status(201);
+        expect(res.body).to.be.an('object');
+        res.body.should.have.property('message');
+        res.body.should.have.property('order');
+        expect(res.body.order).to.be.an('object');
+        res.body.order.should.have.keys(
+          'id', 'foodId', 'totalPrice',
+          'customerId', 'quantity', 'createdAt',
+          'updatedAt', 'deliveryAddress',
+          'status', 'phoneNumber'
+        );
+        expect(res.body.order.status).to.equal('New');
+        expect(res.body.message).to.equal('Order was made successfully');
+        expect(res.body.status).to.equal(201);
+        expect(res.body.success).to.equal(true);
+        done();
+      });
+  });
+  it('it should return 400 Bad request if empty data is submitted', (done) => {
+    chai.request(app)
+      .post('/api/v1/orders/')
+      .set({ authorization: `Bearer ${user1Token}` })
+      .send(mockOrders[1])
+      .end((err, res) => {
+        res.should.have.status(400);
+        expect(res.body).to.be.an('object');
+        res.body.should.have.property('error');
+        expect(res.body.error).to.be.an('object');
+        res.body.error.should.have.keys(
+          'foodId', 'phoneNumber',
+          'deliveryAddress', 'quantity'
+        );
+        expect(res.body.error.foodId).to.equal('FoodId is required, must be of type UUID version 4');
+        expect(res.body.error.quantity)
+          .to.equal('Quantity of food to order is required, must be an integer');
+        expect(res.body.error.deliveryAddress)
+          .to.equal('Delivery address is required, must not be less than 3 characters');
+        expect(res.body.error.phoneNumber)
+          .to.equal('phoneNumber is required');
+        expect(res.body.status).to.equal(400);
+        expect(res.body.success).to.equal(false);
+        done();
+      });
+  });
+  it('it should return 400 Bad request', (done) => {
+    chai.request(app)
+      .post('/api/v1/orders/')
+      .set({ authorization: `Bearer ${user1Token}` })
+      .send(mockOrders[2])
+      .end((err, res) => {
+        res.should.have.status(400);
+        expect(res.body).to.be.an('object');
+        res.body.should.have.property('error');
+        expect(res.body.error).to.be.an('object');
+        res.body.error.should.have.keys(
+          'foodId', 'phoneNumber',
+          'deliveryAddress', 'quantity'
+        );
+        expect(res.body.error.foodId).to.equal('FoodId is required, must be of type UUID version 4');
+        expect(res.body.error.quantity)
+          .to.equal('Quantity of food to order is required, must be an integer');
+        expect(res.body.error.deliveryAddress)
+          .to.equal('Delivery address is required, must not be less than 3 characters');
+        expect(res.body.error.phoneNumber)
+          .to.equal('phoneNumber input isn\'t a valid mobile number');
+        expect(res.body.status).to.equal(400);
+        expect(res.body.success).to.equal(false);
+        done();
+      });
+  });
+  it('it should return 404 Not Found if Food doesn\'t exist', (done) => {
+    chai.request(app)
+      .post('/api/v1/orders/')
+      .set({ authorization: `Bearer ${user1Token}` })
+      .send(mockOrders[3])
+      .end((err, res) => {
+        res.should.have.status(404);
+        expect(res.body).to.be.an('object');
+        res.body.should.have.property('error');
+        expect(res.body.error).to.be.an('object');
+        expect(res.body.status).to.equal(404);
+        expect(res.body.success).to.equal(false);
+        res.body.error.should.have.keys('foodId');
+        expect(res.body.error.foodId).to.equal(`Order can't be placed because Food with ID ${mockOrders[3].foodId} doesn't exist`);
+        done();
+      });
+  });
+  it('it should return 401 Error if token is not provided', (done) => {
+    chai.request(app)
+      .post('/api/v1/orders/')
+      .send(mockOrders[0])
+      .end((err, res) => {
+        res.should.have.status(401);
+        expect(res.body.success).to.equal(false);
+        expect(res.body.status).to.equal(401);
+        expect(res.body).to.be.an('object');
+        res.body.should.have.property('error');
+        expect(res.body.error).to.be.an('object');
+        res.body.error.should.have.property('message');
+        expect(res.body.error.message).to.equal('You are not logged in, Token is needed!');
+        done();
+      });
+  });
+  it('it should return 401 Error if token provided is not valid', (done) => {
+    chai.request(app)
+      .post('/api/v1/orders/')
+      .set({ authorization: `Bearer ${invalidToken}` })
+      .send(mockOrders[0])
+      .end((err, res) => {
+        res.should.have.status(401);
+        expect(res.body.success).to.equal(false);
+        expect(res.body.status).to.equal(401);
+        expect(res.body).to.be.an('object');
+        res.body.should.have.property('error');
+        expect(res.body.error).to.be.an('object');
+        res.body.error.should.have.property('message');
+        expect(res.body.error.message).to.equal('Token is invalid, You need to log in again');
+        done();
+      });
+  });
+  it('Admin should not be able to place an order', (done) => {
+    chai.request(app)
+      .post('/api/v1/orders/')
+      .set({ authorization: `Bearer ${adminToken}` })
+      .send(mockOrders[0])
+      .end((err, res) => {
+        res.should.have.status(403);
+        expect(res.body).to.be.an('object');
+        res.body.should.have.property('error');
+        res.body.error.should.have.property('message');
+        expect(res.body.error).to.be.an('object');
+        expect(res.body.error.message).to.equal('An Admin account can\'t be used to place an Order');
+        expect(res.body.status).to.equal(403);
+        expect(res.body.success).to.equal(false);
         done();
       });
   });

@@ -1,6 +1,10 @@
 import express from 'express';
 import OrderController from '../../controllers/order';
-import { authenticateUser, authorizeUser } from '../../middleware';
+import {
+  authenticateUser,
+  authorizeUser,
+  checkIfUserIsAdmin
+} from '../../middleware';
 import { validateIdParam } from '../../helpers/utils';
 import OrderValidation from '../../helpers/validations/orderValidation';
 
@@ -24,6 +28,13 @@ orderRouter.get(
   validateIdParam,
   OrderValidation.validateOrderUpdateData,
   OrderController.updateOrder
+).post(
+  '/orders/',
+  authenticateUser,
+  OrderValidation.validateOrderInput,
+  OrderValidation.verifyFoodExist,
+  checkIfUserIsAdmin,
+  OrderController.placeOrder
 );
 
 export default orderRouter;

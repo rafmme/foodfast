@@ -200,4 +200,49 @@ export default class OrderController {
       });
     }
   }
+
+  /**
+    * @description handles placing an order
+    * @param {*} req - Incoming Request object
+    * @param {*} res - Incoming Message
+    * @returns {object} res - Route response
+    */
+  static async placeOrder(req, res) {
+    try {
+      const {
+        foodId,
+        quantity,
+        phoneNumber,
+        deliveryAddress
+      } = req.body;
+      const food = await Food.findById(foodId);
+      const totalPrice = food.price * quantity;
+      const order = {
+        foodId,
+        customerId: req.user.userId,
+        quantity,
+        phoneNumber,
+        deliveryAddress,
+        totalPrice,
+        status: 'New'
+      };
+      const orderInfo = await Order.create(order);
+      if (orderInfo) {
+        return res.status(201).send({
+          success: true,
+          status: 201,
+          message: 'Order was made successfully',
+          order: orderInfo
+        });
+      }
+    } catch (error) {
+      return res.status(500).send({
+        success: false,
+        status: 500,
+        error: {
+          message: 'An error occured on the server'
+        }
+      });
+    }
+  }
 }
