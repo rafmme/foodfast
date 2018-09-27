@@ -206,7 +206,7 @@ describe('API endpoint POST /auth/login', () => {
         expect(res.body).to.be.an('object');
         expect(res.body.error).to.be.an('object');
         res.body.error.should.have.property('message');
-        expect(res.body.error.message).to.equal('Login failed! Password is not correct');
+        expect(res.body.error.message).to.equal('Login failed! credentials not correct');
         done();
       });
   });

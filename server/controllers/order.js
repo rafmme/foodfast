@@ -245,4 +245,79 @@ export default class OrderController {
       });
     }
   }
+
+  /**
+    * @description handles fetching of a user's order history
+    * @param {*} req - Incoming Request object
+    * @param {*} res - Incoming Message
+    * @returns {object} res - Route response
+    */
+  static async getUserOrders(req, res) {
+    try {
+      const { id } = req.params;
+      const { isAdmin, userId } = req.user;
+      const userOrders = [];
+      const customer = await User.findById(id);
+      if (!customer) {
+        return res.status(404).send({
+          success: false,
+          status: 404,
+          error: {
+            message: `User with ID of ${id} doesn't exist on the app`
+          }
+        });
+      } if (isAdmin !== true && id !== userId) {
+        return res.status(403).send({
+          success: false,
+          status: 403,
+          error: {
+            message: 'You don\'t have permission to access this'
+          }
+        });
+      }
+      const orders = await Order.find({ where: { customerId: id } });
+      const foods = await Food.all();
+      orders.forEach((order) => {
+        const food = foods.find(elem => elem.id === order.foodId);
+        const customerInfo = {
+          userId: customer.id,
+          fullname: customer.fullname,
+          email: customer.email
+        };
+        const foodItem = {
+          foodId: food.id,
+          title: food.title,
+          description: food.description,
+          imageUrl: food.imageUrl,
+          price: food.price,
+        };
+
+        userOrders.push({
+          orderId: order.id,
+          customer: customerInfo,
+          food: foodItem,
+          quantity: order.quantity,
+          totalPrice: order.totalPrice,
+          deliveryAddress: order.deliveryAddress,
+          status: order.status,
+          createdAt: order.createdAt,
+          updatedAt: order.updatedAt,
+        });
+      });
+      return res.status(200).send({
+        success: true,
+        status: 200,
+        message: 'All User Orders fetched successfully',
+        orders: userOrders,
+      });
+    } catch (error) {
+      return res.status(500).send({
+        success: false,
+        status: 500,
+        error: {
+          message: 'An error occured on the server'
+        }
+      });
+    }
+  }
 }
