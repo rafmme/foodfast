@@ -84,7 +84,7 @@ class AuthController {
           success: false,
           status: 400,
           error: {
-            message: 'Login failed! Password is not correct',
+            message: 'Login failed! credentials not correct',
           }
         });
       } if (user === undefined) {

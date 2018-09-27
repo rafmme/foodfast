@@ -35,6 +35,12 @@ orderRouter.get(
   OrderValidation.verifyFoodExist,
   checkIfUserIsAdmin,
   OrderController.placeOrder
-);
+)
+  .get(
+    '/users/:id/orders/',
+    authenticateUser,
+    validateIdParam,
+    OrderController.getUserOrders
+  );
 
 export default orderRouter;

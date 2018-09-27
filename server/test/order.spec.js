@@ -5,7 +5,8 @@ import mockOrders from './mockData/order';
 import {
   adminToken,
   user1Token,
-  invalidToken
+  invalidToken,
+  user2Token
 } from './mockData/tokens';
 
 chai.use(chaiHttp);
@@ -525,6 +526,159 @@ describe('API endpoint POST /orders/', () => {
         expect(res.body.error.message).to.equal('An Admin account can\'t be used to place an Order');
         expect(res.body.status).to.equal(403);
         expect(res.body.success).to.equal(false);
+        done();
+      });
+  });
+});
+
+describe('API endpoint GET /users/:id/orders/', () => {
+  it('Admin should successfully fetch all orders for a users', (done) => {
+    chai.request(app)
+      .get('/api/v1/users/be500475-db64-4294-b099-1c1655010452/orders/')
+      .set({ authorization: `Bearer ${adminToken}` })
+      .send()
+      .end((err, res) => {
+        res.should.have.status(200);
+        expect(res.body.message).to.equal('All User Orders fetched successfully');
+        expect(res.body.status).to.equal(200);
+        expect(res.body.success).to.equal(true);
+        expect(res.body).to.be.an('object');
+        res.body.should.have.property('message');
+        res.body.should.have.property('orders');
+        expect(res.body.orders).to.be.an('array');
+        if (res.body.orders.length >= 1) {
+          res.body.orders[0].should.have.keys(
+            'orderId', 'food', 'totalPrice',
+            'customer', 'quantity', 'createdAt',
+            'updatedAt', 'deliveryAddress', 'status'
+          );
+          expect(res.body.orders[0].customer).to.be.an('object');
+          expect(res.body.orders[0].food).to.be.an('object');
+          res.body.orders[0].customer.should.have.keys('userId', 'fullname', 'email');
+          res.body.orders[0].food.should.have.keys(
+            'foodId', 'title', 'description',
+            'price', 'imageUrl'
+          );
+          expect(res.body.orders[0].food.price * res.body.orders[0].quantity)
+            .to.equal(res.body.orders[0].totalPrice);
+        }
+        done();
+      });
+  });
+  it('User should successfully fetch their orders history', (done) => {
+    chai.request(app)
+      .get('/api/v1/users/be500475-db64-4294-b099-1c1655010452/orders/')
+      .set({ authorization: `Bearer ${user1Token}` })
+      .send()
+      .end((err, res) => {
+        res.should.have.status(200);
+        expect(res.body.message).to.equal('All User Orders fetched successfully');
+        expect(res.body.status).to.equal(200);
+        expect(res.body.success).to.equal(true);
+        expect(res.body).to.be.an('object');
+        res.body.should.have.property('message');
+        res.body.should.have.property('orders');
+        expect(res.body.orders).to.be.an('array');
+        if (res.body.orders.length >= 1) {
+          res.body.orders[0].should.have.keys(
+            'orderId', 'food', 'totalPrice',
+            'customer', 'quantity', 'createdAt',
+            'updatedAt', 'deliveryAddress', 'status'
+          );
+          expect(res.body.orders[0].customer).to.be.an('object');
+          expect(res.body.orders[0].food).to.be.an('object');
+          res.body.orders[0].customer.should.have.keys('userId', 'fullname', 'email');
+          res.body.orders[0].food.should.have.keys(
+            'foodId', 'title', 'description',
+            'price', 'imageUrl'
+          );
+          expect(res.body.orders[0].food.price * res.body.orders[0].quantity)
+            .to.equal(res.body.orders[0].totalPrice);
+        }
+        done();
+      });
+  });
+  it('User should not be able to fetch another user\'s orders history', (done) => {
+    chai.request(app)
+      .get('/api/v1/users/be500475-db64-4294-b099-1c1655010452/orders/')
+      .set({ authorization: `Bearer ${user2Token}` })
+      .send()
+      .end((err, res) => {
+        res.should.have.status(403);
+        expect(res.body.success).to.equal(false);
+        expect(res.body.status).to.equal(403);
+        expect(res.body).to.be.an('object');
+        res.body.should.have.property('error');
+        expect(res.body.error).to.be.an('object');
+        res.body.error.should.have.property('message');
+        expect(res.body.error.message).to.equal('You don\'t have permission to access this');
+        done();
+      });
+  });
+  it('it should return 401 Error if token is not provided', (done) => {
+    chai.request(app)
+      .get('/api/v1/users/be500475-db64-4294-b099-1c1655010452/orders/')
+      .send()
+      .end((err, res) => {
+        res.should.have.status(401);
+        expect(res.body.success).to.equal(false);
+        expect(res.body.status).to.equal(401);
+        expect(res.body).to.be.an('object');
+        res.body.should.have.property('error');
+        expect(res.body.error).to.be.an('object');
+        res.body.error.should.have.property('message');
+        expect(res.body.error.message).to.equal('You are not logged in, Token is needed!');
+        done();
+      });
+  });
+  it('it should return 401 Error if token provided is not valid', (done) => {
+    chai.request(app)
+      .get('/api/v1/users/be500475-db64-4294-b099-1c1655010452/orders/')
+      .set({ authorization: `Bearer ${invalidToken}` })
+      .send()
+      .end((err, res) => {
+        res.should.have.status(401);
+        expect(res.body.success).to.equal(false);
+        expect(res.body.status).to.equal(401);
+        expect(res.body).to.be.an('object');
+        res.body.should.have.property('error');
+        expect(res.body.error).to.be.an('object');
+        res.body.error.should.have.property('message');
+        expect(res.body.error.message).to.equal('Token is invalid, You need to log in again');
+        done();
+      });
+  });
+  it('it should return 400 Bad request if id param is not UUID version 4', (done) => {
+    chai.request(app)
+      .get('/api/v1/users/helloworld/orders')
+      .set({ authorization: `Bearer ${adminToken}` })
+      .send()
+      .end((err, res) => {
+        res.should.have.status(400);
+        expect(res.body.status).to.equal(400);
+        expect(res.body.success).to.equal(false);
+        expect(res.body).to.be.an('object');
+        expect(res.body.error).to.be.an('object');
+        res.body.should.have.property('error');
+        res.body.error.should.have.property('message');
+        expect(res.body.error.message).to.equal('Request ID param is not valid');
+        done();
+      });
+  });
+  it('it should return 404 Not Found if their is no user with the ID', (done) => {
+    chai.request(app)
+      .get('/api/v1/users/36b90495-2063-482d-a150-595aba109a56/orders/')
+      .set({ authorization: `Bearer ${adminToken}` })
+      .send()
+      .end((err, res) => {
+        res.should.have.status(404);
+        expect(res.body.status).to.equal(404);
+        expect(res.body.success).to.equal(false);
+        expect(res.body).to.be.an('object');
+        expect(res.body.error).to.be.an('object');
+        res.body.should.have.property('error');
+        res.body.error.should.have.property('message');
+        expect(res.body.error.message).to.equal('User with ID of 36b90495-2063-482d-a150-595aba109a56 doesn\'t exist on the app');
         done();
       });
   });
