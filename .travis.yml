@@ -4,9 +4,11 @@ node_js:
 env:
   global:
     - CC_TEST_REPORTER_ID=a3d0951117a04778d1151339dfcd7793e0e0209707b16169d7284df4b08d1d28
+    - CODECLIMATE_REPO_TOKEN=a3d0951117a04778d1151339dfcd7793e0e0209707b16169d7284df4b08d1d28
     - NODE_ENV=test
     - JWT_KEY=Andela21
     - TEST_DB=postgresql://postgres@localhost:5432/foodfast_test
+
 cache:
   directories:
     - "node_modules"
@@ -19,13 +21,14 @@ services:
 before_script:
   - psql -c 'drop database if exists foodfast_test;' -U postgres
   - psql -c 'create database foodfast_test;' -U postgres
-  - npm install
   - curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./cc-test-reporter
   - chmod +x ./cc-test-reporter
   - ./cc-test-reporter before-build
 
 script:
-  - npm run coverage
+  - npm test
 
 after_success:
+  - npm run coverage
+  - codeclimate-test-reporter < ./coverage/lcov.info
   - ./cc-test-reporter after-build --exit-code $TRAVIS_TEST_RESULT
