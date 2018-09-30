@@ -1,0 +1,322 @@
+.mg {
+    margin-bottom: 15px;
+}
+
+.order-card ul {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    justify-content: space-evenly;
+    margin-right: 10px;
+}
+
+.order-card ul li {
+    list-style: none;
+    margin-top: 2px;
+}
+
+.order-card ul li a {
+    color: #FFF;
+    text-decoration: none;
+    height: auto;
+    width: 100%;
+    padding: 3px !important;
+    border-radius: 5px !important;
+}
+
+.pagination {
+    margin-top: 20px;
+    display: flex;
+    justify-content: center;
+}
+
+/* Pagination links */
+.pagination a {
+    color: black;
+    float: left;
+    padding: 8px 16px;
+    text-decoration: none;
+    transition: background-color .3s;
+    box-shadow: 2px 4px 25px rgba(0, 0, 0, 0.1);
+    background-clip: border-box;
+}
+
+/* Style the active/current link */
+.pagination a.active {
+    background-color: #d64541;
+    color: white;
+}
+
+/* Add a grey background color on mouse-over */
+.pagination a:hover:not(.active) {
+    background-color: #019875;
+    color: #FFF;
+}
+
+.modal-image {
+    width: 100%;
+    margin-bottom: 20px;
+    height: 150px;
+}
+
+.meal-card {
+    position: relative;
+    display: ms-flexbox;
+    display: flex;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    min-width: 0;
+    word-wrap: break-word;
+    background-color: #FFF;
+    background-clip: border-box;
+    border: 1px solid rgba(0, 0, 0, 0.125);
+    border-radius: 0.25em;
+}
+
+.meals-container {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.orders-container {
+    display: flex;
+    flex-wrap: wrap;
+    width: 55%;
+    margin: 0px 25% 20px 25%
+}
+
+.order-card {
+    font-family: "Arimo" !important;
+    font-weight: 400;
+    border-radius: 3px;
+    background-color: rgba(255, 255, 255, 0.8);
+    padding: 0 4.16667%;
+    margin-bottom: 3.33333%;
+    width: 100%;
+    margin-left: 7%;
+    margin-right: 17%;
+    cursor: pointer;
+    height: auto;
+    position: relative;
+    color: #333 !important;
+}
+
+.order-card .order-history-header,
+.order-card .order-history-btn,
+.order-card .order-history-footer {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    text-align: center;
+}
+
+.order-card .order-history-btn {
+    margin-bottom: 15px;
+}
+
+.order-card .order-history-btn button {
+    width: 90px;
+}
+
+.order-card p {
+    margin-bottom: 0;
+}
+
+.order-card .order-history-header h3 {
+    margin-bottom: 0;
+}
+
+
+.el-card {
+    box-shadow: 2px 4px 25px rgba(0, 0, 0, 0.1);
+    background-clip: border-box;
+}
+
+.el-card:hover {
+    box-shadow: 2px 8px 45px rgba(0, 0, 0, 0.15);
+    transform: translate3d(0, -2px, 0);
+}
+
+.m-card button {
+    background: #019875 !important;
+    margin-bottom: 15px;
+}
+
+.m-card {
+    margin: 1rem;
+    background: white;
+    box-shadow: 2px 4px 25px rgba(0, 0, 0, 0.1);
+    border-radius: 5px;
+    overflow: hidden;
+    transition: all .2s linear;
+    cursor: pointer;
+    height: auto;
+}
+
+.img-frame {
+    position: relative;
+}
+
+.icon-div {
+    position: absolute;
+    top: 15px;
+    right: 20px;
+}
+
+.hide {
+    display: none !important;
+}
+
+.foodname-mg {
+    margin-top: 25px !important;
+}
+
+.adm-card ul {
+    position: absolute;
+    top: 127px;
+    right: 45px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    width: 100%;
+}
+
+.adm-card ul li {
+    list-style: none;
+}
+
+.fa-ellipsis-v {
+    color: #FFF !important;
+}
+
+.icn {
+    color: #000 !important;
+    margin-bottom: 15px;
+    position: absolute;
+    top: 15px;
+    right: 20px;
+    font-size: 1.1em !important;
+}
+
+.adm-card ul li a {
+    color: #FFF;
+    text-decoration: none;
+    height: auto;
+    width: 100%;
+    padding: 3px !important;
+    border-radius: 5px !important;
+}
+
+.adm-card ul li:nth-child(1) {
+    position: absolute;
+    left: 60px;
+    margin-right: 15px;
+}
+
+.adm-card ul li:nth-child(2) {
+    position: absolute;
+    right: 0px;
+    margin-right: -25px;
+}
+
+.adm-card {
+    margin: 1rem;
+    height: auto;
+    background: white;
+    box-shadow: 2px 4px 25px rgba(0, 0, 0, 0.1);
+    border-radius: 5px;
+    overflow: hidden;
+    transition: all .2s linear;
+    cursor: pointer;
+    height: 300px;
+}
+
+.adm-card img {
+    height: 140px;
+}
+
+#adm-food {
+    padding-top: 4px !important;
+}
+
+.m-card:hover {
+    box-shadow: 2px 8px 45px rgba(0, 0, 0, 0.15);
+    transform: translate3d(0, -2px, 0);
+}
+
+.adm-card:hover {
+    box-shadow: 2px 8px 45px rgba(0, 0, 0, 0.15);
+    transform: translate3d(0, -2px, 0);
+}
+
+.stat-div h2, .stat-div h3 {
+    margin: 0;
+}
+
+.stat-container {
+    margin: 30px auto 0 auto;
+    padding: 0 20% 0 20%;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+
+.stat {
+    padding: 10px;
+    box-sizing: border-box;
+    margin-bottom: 20px;
+    flex: 1;
+    flex-basis: 30%;
+}
+
+.stat-div {
+    display: flex;
+    flex-direction: column;
+    justify-content: right;
+}
+
+@media screen and (max-width: 600px) {
+    .orders-container {
+        width: auto;
+        margin: 0px 30px 5px 30px;
+    }
+    .order-card {
+        margin-left: 0px;
+        margin-right: 0px;
+    }
+}
+
+@media screen and (min-width: 500px) {
+    .m-card {
+        width: calc(50% - 2rem);
+    }
+    .adm-card {
+        width: calc(50% - 2rem);
+    }
+}
+
+@media screen and (min-width: 1000px) {
+    .m-card {
+        width: calc(25% - 2rem);
+    }
+    .adm-card {
+        width: calc(25% - 2rem);
+    }
+    .stat-container {
+        display: flex;
+        justify-content: space-between;
+    }
+
+    .stat {
+        margin-right: 20px;
+    }
+}
+
+@media screen and (min-width: 459px) {
+    .stat-container {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+    }
+}

@@ -22,20 +22,26 @@ html {
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     line-height: 1.6;
+    height: 100%;
 }
 
 body {
     margin: 0px;
+    height: 100%;
+}
+
+.wrapper {
+    position: relative;
+    min-height: 100%;
 }
 
 footer {
-    position: relative;
-    margin-top: 10%;
-    bottom: 0;
-    background: #34495e;
-    color: #fff;
-    height: 50px;
-    padding: 2px 23px 10px 23px;
+    position: absolute;
+    margin-top: 100px;
+    width: 100%;
+    background: lightgray;
+    color: #d64541;
+    font-weight: bold;
 }
 
 input[type=text], input[type=password], input[type=email], input[type=number],
@@ -48,6 +54,16 @@ input[type=file], input[type=tel], input[type=search], select {
     box-sizing: border-box;
     border-radius: 6px;
     outline: none;
+}
+
+select {
+    height: 42px;
+    width: 100%;
+}
+
+.no-link {
+    background: none !important;
+    color: #019875 !important;
 }
 
 .table-padding {
@@ -75,6 +91,7 @@ table tr {
     background-color: #f8f8f8;
     border: 1px solid #ddd;
     padding: .35em;
+    cursor: pointer;
 }
 table th,table td {
     padding: .625em;
@@ -84,12 +101,13 @@ table th {
     font-size: .85em;
     letter-spacing: .1em;
     text-transform: uppercase;
-    background: #34495e;
+    background: #e74c3c;
     color: #fff;
 }
 table tr:hover {
-    background: #34495e;
+    background: #019875;
     color: #fff;
+    cursor: pointer;
 }
 textarea {
     width: 100%;
@@ -136,14 +154,6 @@ textarea {
     text-align: center !important;
 }
 
-.header {
-    width: 100%;
-    height: auto;
-    margin-bottom: 2px;
-    position: fixed;
-    z-index: 70;
-}
-
 #header {
     width: 100%;
     height: auto;
@@ -161,8 +171,12 @@ textarea {
    }
    /* sign up, login page form content box*/
 .form-page-content {
-    margin: 5% auto 15% auto; /* 5% from the top, 15% from the bottom and centered */
-    width: 50%; /* Could be more or less, depending on screen size */
+    margin: 3% auto 15% auto; /* 5% from the top, 15% from the bottom and centered */
+    width: 350px; /* Could be more or less, depending on screen size */
+}
+
+.form-page-content input {
+    margin-bottom: 17px;
 }
 
 #services {
@@ -182,7 +196,7 @@ textarea {
 .mg-top-2 {
     margin-top: 2px;
     line-height: 1.4;
-    border-left: 5px solid #34495e;
+    border-left: 5px solid #019875;
     padding-left: 5px;
 }
 
@@ -191,9 +205,24 @@ textarea {
     margin-bottom: 70px
 }
 .add-meal-btn {
-    width: auto;
-    height: auto;
+    width: 200px;
+    height: 50px;
     margin: auto auto 10px auto;
+    background: #019875 !important;
+    color: #FFF;
+    border: none;
+}
+
+.add-meal-btn:hover {
+    background: orange !important;
+    color: #FFF !important;
+}
+
+.bg-green {
+    background: #019875 !important;
+}
+.bg-red {
+    background: #d64541 !important;
 }
 .accept-btn {
     width: auto;
@@ -233,8 +262,17 @@ textarea {
     font-weight: bold;
 }
 
-.modal-content input {
+.text-white {
+    color: #FFF !important;
+}
+
+.modal-content input , .modal-content textarea {
     font-weight: 700;
+    margin-bottom: 15px;
+}
+
+.modal-content button {
+    margin-bottom: 15px;
 }
 
 .row {
@@ -281,23 +319,25 @@ button {
     width: 100%;
     margin-bottom: 2px;
     height: 48px;
-    background: #34495e;
-    color: #fff;
+    background: #019875;
+    color: #FFF;
     border-radius: 5px;
     margin-top: -10px;
-    border: 1px #333 solid;
+    border: none !important;
     cursor: pointer;
     outline: none;
     font-size: 17px;
 }
 .price {
-color: #e74c3c;
+color: #d64541;
 font-size: 18px;
 text-transform: uppercase;
+margin-top: 20px;
 }
 
 .container {
 padding: 2px 16px;
+height: auto;
 }
 .container h4 {
 margin-top: -2px;
@@ -308,8 +348,15 @@ line-height: 1.2;
 margin-top: -15px;
 word-wrap: break-word;
 }
+.min-p {
+    max-height: 64px;
+    overflow: hidden;
+    margin-bottom: 10px;
+    text-overflow: ellipsis;
+    font-size: 0.8em !important;
+}
 button:hover {
-    background: #333;
+    background: #019875;
     color: #fff;
 }
 
@@ -348,11 +395,23 @@ button:hover {
   margin-right: -30px;
 }
 
+.text-primary-color {
+    color: #d64541;
+}
+
+.text-primary-green {
+    color: #019875;
+}
+
+.text-orange {
+    color: orange;
+}
+
 .btn {
     padding: .5em 3em;
     width: 100%;
-    background-color: #34495e;
-    color: #ffffff;
+    background-color: #d64541;
+    color: #FFF;
     border: none;
     cursor: pointer;
     box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
@@ -435,6 +494,11 @@ section h2 {
     font-family: 'Lato' cursive;
 }
 
+#showcase-message {
+    width: 289px;
+    padding: 5px;
+}
+
 .mg-left-10 {
     margin-left: 10px;
 }
@@ -445,7 +509,7 @@ section h2 {
 }
 
 .search-container {
-    margin-left: 30%
+    margin-left: 10%
 }
 
 .search-container form {
@@ -470,9 +534,13 @@ section h2 {
     height: auto;
 }
 
+#brand {
+    font-weight: bolder;
+}
+
 .brand-name {
     font-size: 30px;
-    color: #34495e;
+    color: #d64541;
 }
 
 label span {
@@ -485,10 +553,11 @@ img {
 }
 
 .showcase {
-    background: url('../images/1.jpg');
+    background: url('../images/burrito-chicken-close-up-461198.jpg');
     width: 100%;
     height: 350px;
-    background-position: center;
+    background-position-y: center;
+    background-position-x: center;
     background-size: cover;
     background-repeat: no-repeat;
     padding: 10% 0px 70px 0px;
@@ -498,7 +567,7 @@ img {
  margin-top: 5px;
  color: white;
  width: 150px;
- background: #34495e;
+ background: #d64541;
  border-radius: 50px;
 }
 
@@ -506,6 +575,7 @@ img {
     width: 50%;
     border-radius: 2px;
     padding-right: 50px;
+    height: 39px;
 }
 
 .input-group button {
@@ -513,7 +583,7 @@ img {
     height: 40px;
     border-radius: 2px;
     outline: none;
-    margin-left: -55px;
+    margin-left: -53px;
     background: #34495e;
     color: #fff;
 }
@@ -522,7 +592,7 @@ header .topnav span {
     display: block;
     width: 20px;
     height: 1.5px;
-    background: white;
+    background: #d64541;
     margin: 3px -5px;
 }
 
@@ -538,14 +608,14 @@ header .topnav span {
 
 .topnav {
     overflow: hidden;
-    box-shadow: 0px 4px 4px rgba(0,0,0,0.7);
-    background: #34495e;
+    box-shadow: 0px 4px 4px rgba(0,0,0,0.23);
+    background: lightgray;
   }
 
   .topnav a {
     float: left;
     display: block;
-    color: white;
+    color: #d64541;
     text-align: center;
     padding: 14px 16px;
     text-decoration: none;
@@ -553,11 +623,12 @@ header .topnav span {
 
   .topnav .lnk a {
       font-size: 0.9em;
+      color: #019875;
    }
 
   .topnav .lnk a:hover {
-    color: #333 !important;
-    background: white !important;
+    color: #FFF;
+    background: #019875;
     border-radius: 0px 20px 0px 20px;
    }
 
@@ -582,7 +653,7 @@ header .topnav span {
 *
 */
 
-@media only screen and (min-width: 700px) {
+@media only screen and (min-width: 450px) {
        /* The Modal (background) */
 .modal {
     display: none; /* Hidden by default */
@@ -603,7 +674,7 @@ header .topnav span {
     margin: 5% auto 15% auto; /* 5% from the top, 15% from the bottom and centered */
     border: 0.5px solid #fff;
     border-radius: 3px;
-    width: 50%; /* Could be more or less, depending on screen size */
+    width: 380px; /* Could be more or less, depending on screen size */
 }
 }
 
@@ -628,6 +699,7 @@ header .topnav span {
         border-bottom: 3px solid #ddd;
         display: block;
         margin-bottom: .625em;
+        cursor: pointer;
       }
       table td {
         border-bottom: 1px solid #ddd;
@@ -698,8 +770,16 @@ header .topnav span {
       display: block;
     }
     #rule {
-        border: 1px solid black;
+        border: 0.4px solid #F5F7FA;
         }
+  }
+
+  @media screen and (max-width: 500px) {
+    /* sign up, login page form content box*/
+    .form-page-content {
+        margin: 5% 10% 15% 10%; /* 5% from the top, 15% from the bottom and centered */
+        width: 80%; /* Could be more or less, depending on screen size */
+    }
   }
 
   @media screen and (max-width: 600px) {
@@ -727,15 +807,9 @@ header .topnav span {
         padding-top: 8%;
     }
 
-    /* sign up, login page form content box*/
-    .form-page-content {
-        margin: 5% 10% 15% 10%; /* 5% from the top, 15% from the bottom and centered */
-        width: 80%; /* Could be more or less, depending on screen size */
-    }
-
     .showcase {
         width: 100%;
-        background: url('../images/1.jpg');
+        background: url('../images/burrito-chicken-close-up-461198.jpg');
         background-position: center;
         background-size: cover;
         background-repeat: no-repeat;
@@ -751,13 +825,13 @@ header .topnav span {
         font-size: 19px;
     }
     #search-box {
-        width: 80%;
+        width: 78%;
         border-radius: 2px;
         padding-right: 50px;
     }
 
     .input-group button {
-        width: 50px;
+        width: 53px;
         height: 40px;
         border-radius: 2px;
         outline: none;
