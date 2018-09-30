@@ -6,6 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Foods-Admin | FoodFast</title>
     <link rel="stylesheet" href="../assets/css/style.css">
+    <link rel="stylesheet" href="../assets/css/page.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Pacifo">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:300,400,700">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -13,122 +14,269 @@
 </head>
 
 <body>
-    <header id="header">
-        <nav class="topnav" id="myTopnav">
-            <a href="index.html" id="brand">FoodFast</a>
-            <div id="rule"></div>
-            <div class="lnk">
-                <a class="alink" style="display: none;">_</a>
-                <a href="#">
-                    <i class="fa fa-user"></i> Hello! Admin</a>
-                <a href="index.html#all-orders">
-                    <i class="fa fa-dollar"></i> All Orders</a>
-                <a href="../login.html">
-                    <i class="fa fa-sign-out"></i> Sign out</a>
-            </div>
-            <a href="javascript:void(0);" id="toggle" class="icon" onclick="toggleBtn()">
-                <span></span>
-                <span></span>
-                <span></span>
-            </a>
-        </nav>
-    </header>
-    <div class=" row center">
-        <h2 id="new-orders">All food items</h2>
-        <div class="row table-padding">
-            <form action="#">
-                <div class="row order-box-p" style="width: 70%">
-                    <div class="col-3-2">
-                        <input type="search" name="" id="order-search-box" required placeholder="Search foods">
+    <div class="wrapper">
+        <header id="header">
+            <nav class="topnav" id="myTopnav">
+                <a href="index.html" id="brand">FoodFast</a>
+                <div id="rule"></div>
+                <div class="lnk">
+                    <a class="alink" style="display: none;">_</a>
+                    <a href="#" class="no-link">
+                        <i class="fa fa-user"></i> Admin</a>
+                    <a href="index.html#all-orders">
+                        <i class="fa fa-dollar"></i> View Orders</a>
+                    <a href="../login.html">
+                        <i class="fa fa-sign-out"></i> Sign out</a>
+                </div>
+                <a href="javascript:void(0);" id="toggle" class="icon" onclick="toggleBtn()">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </a>
+            </nav>
+        </header>
+        <div class=" row center">
+            <h2 id="new-orders" style="margin-top: 50px;">All food items</h2>
+            <div class="row table-padding">
+                <form action="#">
+                    <div class="row order-box-p" style="width: 70%">
+                        <div class="col-3-2">
+                            <input type="search" name="" id="order-search-box" required placeholder="Search foods">
+                        </div>
+                        <div class="col-2-3">
+                            <select>
+                                <option value="all">All</option>
+                                <option value="newest">newest</option>
+                                <option value="oldest">oldest</option>
+                            </select>
+                        </div>
                     </div>
-                    <div class="col-2-3">
-                        <select>
-                            <option value="all">All</option>
-                            <option value="newest">newest</option>
-                            <option value="oldest">oldest</option>
-                        </select>
+                </form>
+                <button class="add-meal-btn el-card" onclick="showModal('add-meal')">
+                    <i class="fa fa-plus"></i> Add New Food</button>
+            </div>
+            <br>
+            <section id="adm-food" class="section-padding">
+                <div class="meals-container">
+                    <div class="meal-card adm-card text-left">
+                        <div class="img-frame">
+                            <img src="../assets/images/1.jpg" alt="Avatar" style="width:100%">
+                        </div>
+                        <div class="icon-div" onclick="showMenu('menu1')">
+                            <i class="fa fa-ellipsis-v text-primary-green" style="font-size: 1.5em"></i>
+                        </div>
+                        <ul class="hide" id="menu1">
+                            <li onclick="showModal('edit-meal')"><a class="bg-green" href="javascript:void(0);"><i class="fa fa-edit"></i>
+                                    Edit</a></li>
+                            <li onclick="showModal('del-confirmation')"><a class="bg-red" href="javascript:void(0);"><i class="fa fa-trash-o"></i>
+                                    Delete</a></li>
+                        </ul>
+                        <div class="container">
+                            <h4 class="foodname-mg">
+                                <b>Flying Spaghetti</b>
+                            </h4>
+                            <p class="min-p">Delicious sacred meals for soul healing specially recommended for
+                                new users
+                            </p>
+                            <p class="price">
+                                <b>₦ 500</b>
+                            </p>
+
+                        </div>
+                    </div>
+                    <div class="meal-card adm-card text-left">
+                        <div class="img-frame">
+                            <img src="../assets/images/bacon-bread-bun-59943.jpg" alt="Avatar" style="width:100%">
+                        </div>
+                        <div class="icon-div" onclick="showMenu('menu2')">
+                            <i class="fa fa-ellipsis-v text-primary-green" style="font-size: 1.5em"></i>
+                        </div>
+                        <ul class="hide" id="menu2">
+                            <li onclick="showModal('edit-meal')"><a class="bg-green" href="javascript:void(0);"><i class="fa fa-edit"></i>
+                                    Edit</a></li>
+                            <li onclick="showModal('del-confirmation')"><a class="bg-red" href="javascript:void(0);"><i class="fa fa-trash-o"></i>
+                                    Delete</a></li>
+                        </ul>
+                        <div class="container">
+                            <h4 class="foodname-mg">
+                                <b>Flying Spaghetti</b>
+                            </h4>
+                            <p class="min-p">Delicious sacred meals for soul healing specially recommended for
+                                new users
+                            </p>
+                            <p class="price">
+                                <b>₦ 500</b>
+                            </p>
+
+                        </div>
+                    </div>
+                    <div class="meal-card adm-card text-left">
+                        <div class="img-frame">
+                            <img src="../assets/images/bacon-bread-bun-59943.jpg" alt="Avatar" style="width:100%">
+                        </div>
+                        <div onclick="showMenu('menu3')" class="icon-div">
+                            <i class="fa fa-ellipsis-v" style="font-size: 1.5em"></i>
+                        </div>
+                        <ul class="hide" id="menu3">
+                            <li onclick="showModal('edit-meal')"><a class="bg-green" href="javascript:void(0);"><i class="fa fa-edit"></i>
+                                    Edit</a></li>
+                            <li onclick="showModal('del-confirmation')"><a class="bg-red" href="javascript:void(0);"><i class="fa fa-trash-o"></i>
+                                    Delete</a></li>
+                        </ul>
+                        <div class="container">
+                            <h4 class="foodname-mg">
+                                <b>Flying Spaghetti</b>
+                            </h4>
+                            <p class="min-p">Delicious sacred meals for soul healing specially recommended for
+                                new users
+                            </p>
+                            <p class="price">
+                                <b>₦ 500</b>
+                            </p>
+
+                        </div>
+                    </div>
+                    <div class="meal-card adm-card text-left">
+                        <div class="img-frame">
+                            <img src="../assets/images/bacon-bread-bun-59943.jpg" alt="Avatar" style="width:100%">
+                        </div>
+                        <div class="icon-div" onclick="showMenu('menu4')">
+                            <i class="fa fa-ellipsis-v" style="font-size: 1.5em"></i>
+                        </div>
+                        <ul class="hide" id="menu4">
+                            <li onclick="showModal('edit-meal')"><a href="javascript:void(0);" class="bg-green"><i class="fa fa-edit"></i>
+                                    Edit</a></li>
+                            <li onclick="showModal('del-confirmation')"><a href="javascript:void(0);" class="bg-red"><i class="fa fa-trash-o"></i>
+                                    Delete</a></li>
+                        </ul>
+                        <div class="container">
+                            <h4 class="foodname-mg">
+                                <b>Flying Spaghetti</b>
+                            </h4>
+                            <p class="min-p">Delicious sacred meals for soul healing specially recommended for
+                                new users
+                            </p>
+                            <p class="price">
+                                <b>₦ 500</b>
+                            </p>
+
+                        </div>
+                    </div>
+                    <div class="meal-card adm-card text-left">
+                        <div class="img-frame">
+                            <img src="../assets/images/bacon-bread-bun-59943.jpg" alt="Avatar" style="width:100%">
+                        </div>
+                        <div class="icon-div" onclick="showMenu('menu5')">
+                            <i class="fa fa-ellipsis-v" style="font-size: 1.5em"></i>
+                        </div>
+                        <ul class="hide" id="menu5">
+                            <li onclick="showModal('edit-meal')"><a class="bg-green" href="javascript:void(0);"><i class="fa fa-edit"></i>
+                                    Edit</a></li>
+                            <li onclick="showModal('del-confirmation')"><a class="bg-red" href="javascript:void(0);"><i class="fa fa-trash-o"></i>
+                                    Delete</a></li>
+                        </ul>
+                        <div class="container">
+                            <h4 class="foodname-mg">
+                                <b>Flying Spaghetti</b>
+                            </h4>
+                            <p class="min-p">Delicious sacred meals for soul healing specially recommended for
+                                new users
+                            </p>
+                            <p class="price">
+                                <b>₦ 500</b>
+                            </p>
+
+                        </div>
+                    </div>
+                    <div class="meal-card adm-card text-left">
+                        <div class="img-frame">
+                            <img src="../assets/images/bacon-bread-bun-59943.jpg" alt="Avatar" style="width:100%">
+                        </div>
+                        <div class="icon-div" onclick="showMenu('menu6')">
+                            <i class="fa fa-ellipsis-v" style="font-size: 1.5em"></i>
+                        </div>
+                        <ul class="hide" id="menu6">
+                            <li onclick="showModal('edit-meal')"><a class="bg-green" href="javascript:void(0);"><i class="fa fa-edit"></i>
+                                    Edit</a></li>
+                            <li onclick="showModal('del-confirmation')"><a class="bg-red" href="javascript:void(0);"><i class="fa fa-trash-o"></i>
+                                    Delete</a></li>
+                        </ul>
+                        <div class="container">
+                            <h4 class="foodname-mg">
+                                <b>Flying Spaghetti</b>
+                            </h4>
+                            <p class="min-p">Delicious sacred meals for soul healing specially recommended for
+                                new users
+                            </p>
+                            <p class="price">
+                                <b>₦ 500</b>
+                            </p>
+
+                        </div>
+                    </div>
+                    <div class="meal-card adm-card text-left">
+                        <div class="img-frame">
+                            <img src="../assets/images/bacon-bread-bun-59943.jpg" alt="Avatar" style="width:100%">
+                        </div>
+                        <div class="icon-div" onclick="showMenu('menu7')">
+                            <i class="fa fa-ellipsis-v" style="font-size: 1.5em"></i>
+                        </div>
+                        <ul class="hide" id="menu7">
+                            <li onclick="showModal('edit-meal')"><a class="bg-green" href="javascript:void(0);"><i class="fa fa-edit"></i>
+                                    Edit</a></li>
+                            <li onclick="showModal('del-confirmation')"><a class="bg-red" href="javascript:void(0);"><i class="fa fa-trash-o"></i>
+                                    Delete</a></li>
+                        </ul>
+                        <div class="container">
+                            <h4 class="foodname-mg">
+                                <b>Flying Spaghetti</b>
+                            </h4>
+                            <p class="min-p">Delicious sacred meals for soul healing specially recommended for
+                                new users
+                            </p>
+                            <p class="price">
+                                <b>₦ 500</b>
+                            </p>
+
+                        </div>
+                    </div>
+                    <div class="meal-card adm-card text-left">
+                        <div class="img-frame">
+                            <img src="../assets/images/bacon-bread-bun-59943.jpg" alt="Avatar" style="width:100%">
+                        </div>
+                        <div class="icon-div" onclick="showMenu('menu8')">
+                            <i class="fa fa-ellipsis-v" style="font-size: 1.5em"></i>
+                        </div>
+                        <ul class="hide" id="menu8">
+                            <li onclick="showModal('edit-meal')"><a class="bg-green" href="javascript:void(0);"><i class="fa fa-edit"></i>
+                                    Edit</a></li>
+                            <li onclick="showModal('del-confirmation')"><a class="bg-red" href="javascript:void(0);"><i class="fa fa-trash-o"></i>
+                                    Delete</a></li>
+                        </ul>
+                        <div class="container">
+                            <h4 class="foodname-mg">
+                                <b>Flying Spaghetti</b>
+                            </h4>
+                            <p class="min-p">Delicious sacred meals for soul healing specially recommended for
+                                new users
+                            </p>
+                            <p class="price">
+                                <b>₦ 500</b>
+                            </p>
+
+                        </div>
                     </div>
                 </div>
-            </form>
-            <button class="add-meal-btn" onclick="showModal('add-meal')">
-                <i class="fa fa-plus"></i> Add New Food</button>
-            <table>
-                <thead>
-                    <tr>
-                        <th scope="col">S/N</th>
-                        <th scope="col">Title</th>
-                        <th scope="col">Description</th>
-                        <th scope="col">Price</th>
-                        <th scope="col">Image</th>
-                        <th scope="col"></th>
-                        <th scope="col"></th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td data-label="S/N">1</td>
-                        <td data-label="Title">Rice Soup</td>
-                        <td data-label="Description">Nutritious meal, good for the body</td>
-                        <td data-label="Price">₦1,190.50</td>
-                        <td data-label="Image">
-                            <img src="../assets/images/1.jpg" width="auto" height="auto" alt="">
-                        </td>
-                        <td data-label="">
-                            <button class="accept-btn" onclick="showModal('edit-meal')">Edit</button>
-                        </td>
-                        <td data-label="">
-                            <button class="reject-btn" onclick="showModal('del-confirmation')">Delete</button>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td data-label="S/N">2</td>
-                        <td data-label="Title">Rice Soup</td>
-                        <td data-label="Description">Nutritious meal, good for the body</td>
-                        <td data-label="Price">₦1,190.50</td>
-                        <td data-label="Image">
-                            <img src="../assets/images/1.jpg" width="auto" height="auto" alt="">
-                        </td>
-                        <td data-label="">
-                            <button class="accept-btn" onclick="showModal('edit-meal')">Edit</button>
-                        </td>
-                        <td data-label="">
-                            <button class="reject-btn" onclick="showModal('del-confirmation')">Delete</button>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td data-label="S/N">3</td>
-                        <td data-label="Title">Rice Soup</td>
-                        <td data-label="Description">Nutritious meal, good for the body</td>
-                        <td data-label="Price">₦1,190.50</td>
-                        <td data-label="Image">
-                            <img src="../assets/images/1.jpg" width="auto" height="auto" alt="">
-                        </td>
-                        <td data-label="">
-                            <button class="accept-btn" onclick="showModal('edit-meal')">Edit</button>
-                        </td>
-                        <td data-label="">
-                            <button class="reject-btn" onclick="showModal('del-confirmation')">Delete</button>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td data-label="S/N">4</td>
-                        <td data-label="Title">Rice Soup</td>
-                        <td data-label="Description">Nutritious meal, good for the body</td>
-                        <td data-label="Price">₦1,190.50</td>
-                        <td data-label="Image">
-                            <img src="../assets/images/1.jpg" width="auto" height="auto" alt="">
-                        </td>
-                        <td data-label="">
-                            <button class="accept-btn" onclick="showModal('edit-meal')">Edit</button>
-                        </td>
-                        <td data-label="">
-                            <button class="reject-btn" onclick="showModal('del-confirmation')">Delete</button>
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
+            </section>
+            <div class="pagination">
+                <a href="#">&laquo;</a>
+                <a href="#">1</a>
+                <a class="active" href="#">2</a>
+                <a href="#">3</a>
+                <a href="#">4</a>
+                <a href="#">&raquo;</a>
+            </div>
         </div>
-        <br>
     </div>
     <div id="edit-meal" class="modal">
         <form class="container modal-content animate" id="edit-form">
@@ -139,12 +287,12 @@
             <label for="title">Food Name</label>
             <input type="text" name="" id="title" value="Garnished Wood soup" required placeholder="Food Name">
             <label for="desc">Description</label>
-            <textarea style="height: 70px;" name="" id="desc" cols="30" rows="10" placeholder="Food Description">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ut, tempora cupiditate! Mollitia ut quia eaque. Consequatur, totam omnis? Laudantium officia facilis explicabo at non ad excepturi ipsa aperiam nam neque?</textarea>
+            <textarea style="height: 70px;" required name="" id="desc" cols="30" rows="10" placeholder="Food Description">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ut, tempora cupiditate! Mollitia ut quia eaque. Consequatur, totam omnis? Laudantium officia facilis explicabo at non ad excepturi ipsa aperiam nam neque?</textarea>
             <label for="price">Price</label>
             <input type="number" value="5000" name="" id="price" required placeholder="Price">
             <label for="image">Image</label>
             <input type="file" name="" id="image">
-            <button style="margin-top: auto;" type="submit">Save</button>
+            <button class="btn" style="margin-top: auto;" type="submit">Save</button>
         </form>
     </div>
     <div id="add-meal" class="modal">
@@ -161,7 +309,7 @@
             <input type="number" name="" id="price" required placeholder="Price">
             <label for="image">Image</label>
             <input type="file" name="" id="image">
-            <button style="margin-top: auto;" type="submit">Add Food</button>
+            <button style="margin-top: auto;" class="btn" type="submit">Add Food</button>
         </form>
     </div>
     <div class="modal" id="del-confirmation">
@@ -175,11 +323,11 @@
             </h4>
             <div class="row" style="margin-bottom: 15px;">
                 <div class="col-2">
-                    <button class="btn accept-btn" onclick="closeModal('del-confirmation')">Yes</button>
+                    <button class="btn bg-green" onclick="closeModal('del-confirmation')">Yes</button>
                 </div>
                 <div class="col-2">
                     <div class="mg-left-10">
-                        <button class="btn reject-btn mg-top-5" onclick="closeModal('del-confirmation')">No</button>
+                        <button class="btn bg-red mg-top-5" onclick="closeModal('del-confirmation')">No</button>
                     </div>
                 </div>
             </div>
