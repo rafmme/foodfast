@@ -24,10 +24,7 @@ describe('API endpoint POST /auth/signup', () => {
         expect(res.body.message).to.equal('User account created successfully');
         expect(res.body.status).to.equal(201);
         expect(res.body.success).to.equal(true);
-        res.body.user.should.have.keys(
-          'id', 'fullname', 'password', 'email',
-          'isAdmin', 'createdAt', 'updatedAt'
-        );
+        res.body.user.should.have.keys('userId', 'fullname', 'email', 'isAdmin');
         done();
       });
   });

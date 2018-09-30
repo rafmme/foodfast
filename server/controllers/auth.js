@@ -24,24 +24,23 @@ class AuthController {
     const isAdmin = false;
     const signUpData = {
       fullname,
-      email,
+      email: email.toLowerCase(),
       password: encryptPassword(password.trim()),
       isAdmin
     };
     User.create(signUpData).then((user) => {
-      const tokenData = {
+      const data = {
         userId: user.id,
         email: user.email,
         fullname: user.fullname,
         isAdmin
       };
-      const token = generateToken(tokenData);
-      user.password = '**********';
+      const token = generateToken(data);
       return res.status(201).send({
         success: true,
         status: 201,
         message: 'User account created successfully',
-        user,
+        user: data,
         token,
       });
     }).catch(() => res.status(500).send({
@@ -62,7 +61,7 @@ class AuthController {
   static async loginUser(req, res) {
     const { email, password } = req.body;
     try {
-      const user = await User.find({ where: { email: email.trim() } });
+      const user = await User.find({ where: { email: email.toLowerCase().trim() } });
       if (user) {
         if (checkIfPasswordMatch(user.password, password.trim())) {
           const data = {
