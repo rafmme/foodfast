@@ -42,6 +42,7 @@ export default class OrderController {
           food: foodItem,
           quantity: order.quantity,
           totalPrice: order.totalPrice,
+          phoneNumber: order.phoneNumber,
           deliveryAddress: order.deliveryAddress,
           status: order.status,
           createdAt: order.createdAt,
@@ -277,8 +278,8 @@ export default class OrderController {
       }
       const orders = await Order.find({ where: { customerId: id } });
       const foods = await Food.all();
-      orders.forEach((order) => {
-        const food = foods.find(elem => elem.id === order.foodId);
+      if (orders.length === undefined && orders instanceof Order) {
+        const food = foods.find(elem => elem.id === orders.foodId);
         const customerInfo = {
           userId: customer.id,
           fullname: customer.fullname,
@@ -293,17 +294,47 @@ export default class OrderController {
         };
 
         userOrders.push({
-          orderId: order.id,
+          orderId: orders.id,
           customer: customerInfo,
           food: foodItem,
-          quantity: order.quantity,
-          totalPrice: order.totalPrice,
-          deliveryAddress: order.deliveryAddress,
-          status: order.status,
-          createdAt: order.createdAt,
-          updatedAt: order.updatedAt,
+          quantity: orders.quantity,
+          totalPrice: orders.totalPrice,
+          phoneNumber: orders.phoneNumber,
+          deliveryAddress: orders.deliveryAddress,
+          status: orders.status,
+          createdAt: orders.createdAt,
+          updatedAt: orders.updatedAt,
         });
-      });
+      } else {
+        orders.forEach((order) => {
+          const food = foods.find(elem => elem.id === order.foodId);
+          const customerInfo = {
+            userId: customer.id,
+            fullname: customer.fullname,
+            email: customer.email
+          };
+          const foodItem = {
+            foodId: food.id,
+            title: food.title,
+            description: food.description,
+            imageUrl: food.imageUrl,
+            price: food.price,
+          };
+
+          userOrders.push({
+            orderId: order.id,
+            customer: customerInfo,
+            food: foodItem,
+            quantity: order.quantity,
+            totalPrice: order.totalPrice,
+            phoneNumber: order.phoneNumber,
+            deliveryAddress: order.deliveryAddress,
+            status: order.status,
+            createdAt: order.createdAt,
+            updatedAt: order.updatedAt,
+          });
+        });
+      }
       return res.status(200).send({
         success: true,
         status: 200,
