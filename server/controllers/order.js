@@ -278,6 +278,14 @@ export default class OrderController {
       }
       const orders = await Order.find({ where: { customerId: id } });
       const foods = await Food.all();
+      if (!orders) {
+        return res.status(200).send({
+          success: true,
+          status: 200,
+          message: 'All User Orders fetched successfully',
+          orders: [],
+        });
+      }
       if (orders.length === undefined && orders instanceof Order) {
         const food = foods.find(elem => elem.id === orders.foodId);
         const customerInfo = {
