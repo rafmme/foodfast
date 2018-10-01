@@ -31,7 +31,8 @@ describe('API endpoint GET /orders/', () => {
           res.body.orders[0].should.have.keys(
             'orderId', 'food', 'totalPrice',
             'customer', 'quantity', 'createdAt',
-            'updatedAt', 'deliveryAddress', 'status'
+            'updatedAt', 'deliveryAddress', 'status',
+            'phoneNumber'
           );
           expect(res.body.orders[0].customer).to.be.an('object');
           expect(res.body.orders[0].food).to.be.an('object');
@@ -550,7 +551,8 @@ describe('API endpoint GET /users/:id/orders/', () => {
           res.body.orders[0].should.have.keys(
             'orderId', 'food', 'totalPrice',
             'customer', 'quantity', 'createdAt',
-            'updatedAt', 'deliveryAddress', 'status'
+            'updatedAt', 'deliveryAddress', 'status',
+            'phoneNumber'
           );
           expect(res.body.orders[0].customer).to.be.an('object');
           expect(res.body.orders[0].food).to.be.an('object');
@@ -583,7 +585,8 @@ describe('API endpoint GET /users/:id/orders/', () => {
           res.body.orders[0].should.have.keys(
             'orderId', 'food', 'totalPrice',
             'customer', 'quantity', 'createdAt',
-            'updatedAt', 'deliveryAddress', 'status'
+            'updatedAt', 'deliveryAddress', 'status',
+            'phoneNumber'
           );
           expect(res.body.orders[0].customer).to.be.an('object');
           expect(res.body.orders[0].food).to.be.an('object');

@@ -1,6 +1,7 @@
 // Import necessary modules from the installed dependencies
 import dotenv from 'dotenv';
 import bodyParser from 'body-parser';
+import cors from 'cors';
 import express from 'express';
 import logger from 'volleyball';
 import expressValidation from 'express-validator';
@@ -23,11 +24,14 @@ app.use(logger);
 app.use(expressValidation());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
+app.use(cors());
 app.use('/', apiRouter);
 
 app.get('/', (req, res) => res.status(200).send({
   message: 'Welcome to Fast Food Fast app'
 }));
+
+app.get('/api-docs', (req, res) => res.redirect('https://app.swaggerhub.com/apis-docs/faray/fast-food_fast/1.0'));
 
 // Show 404 error for unexisting route on the app
 app.use((req, res) => {
