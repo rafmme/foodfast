@@ -25,6 +25,7 @@ app.use(expressValidation());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cors());
+app.use(express.static('client'));
 app.use('/', apiRouter);
 
 app.get('/', (req, res) => res.status(200).send({
