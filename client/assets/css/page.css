@@ -1,0 +1,364 @@
+.tab-active {
+    background: #FFF !important;
+    color: #333 !important;
+}
+
+.tab-hide {
+    display: none;
+}
+
+.order-card ul {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+.order-card ul li {
+    list-style: none;
+    margin-top: 2px;
+}
+
+.order-card ul li a {
+    color: #FFF;
+    text-decoration: none;
+    height: auto;
+    width: 100%;
+    padding: 3px !important;
+    border-radius: 5px !important;
+}
+
+.mg {
+    margin: 5px 0px 0px 0px;
+}
+
+.orderId-mg {
+    margin: 15px 0px 5px 0px !important;
+}
+
+.tab {
+    padding: 20px 8.5% 0px 8.5%;
+}
+
+#all-order-btn {
+    background: orange;
+    color: #FFF;
+}
+
+#pending-order-btn {
+    background: #d64541;
+    color: #FFF;
+}
+
+#complete-order-btn {
+    background: #019875;
+    color: #FFF;
+}
+
+#all-order-btn:hover {
+    color: orange;
+    background: #FFF;
+    border-bottom: 3px solid black;
+}
+
+#pending-order-btn:hover {
+    color: #d64541;
+    background: #FFF;
+}
+
+#complete-order-btn:hover {
+    color: #019875;
+    background: #FFF;
+}
+
+.btn-container {
+    display: flex;
+    flex-direction: row;
+    width: auto;
+}
+
+.btn-container button {
+    border: none !important;
+    border-radius: 0px !important;
+}
+
+.bd-left-green {
+    border-top: 3px solid #019875 !important;
+}
+
+.bd-left-red {
+    border-top: 3px solid #d64541 !important;
+}
+
+.bd-left-orange {
+    border-top: 3px solid orange !important;
+}
+
+.pagination {
+    margin-top: 20px;
+    display: flex;
+    justify-content: center;
+}
+
+/* Pagination links */
+.pagination a {
+    color: black;
+    float: left;
+    padding: 8px 16px;
+    text-decoration: none;
+    transition: background-color .3s;
+    box-shadow: 2px 4px 25px rgba(0, 0, 0, 0.1);
+    background-clip: border-box;
+}
+
+/* Style the active/current link */
+.pagination a.active {
+    background-color: #d64541;
+    color: white;
+}
+
+/* Add a grey background color on mouse-over */
+.pagination a:hover:not(.active) {
+    background-color: #019875;
+    color: #FFF;
+}
+
+.modal-image {
+    width: 100%;
+    margin-bottom: 20px;
+    height: 150px;
+}
+
+.meal-card {
+    position: relative;
+    display: ms-flexbox;
+    display: flex;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    min-width: 0;
+    word-wrap: break-word;
+    background-color: #FFF;
+    background-clip: border-box;
+    border: 1px solid rgba(0, 0, 0, 0.125);
+    border-radius: 0.25em;
+}
+
+.meals-container {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.orders-container {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.order-card {
+    margin: auto auto 30px auto;
+    background: white;
+    box-shadow: 2px 4px 25px rgba(0, 0, 0, 0.1);
+    border-radius: 5px;
+    overflow: hidden;
+    transition: all .2s linear;
+    cursor: pointer;
+    height: 240px;
+    overflow-y: auto;
+    position: relative;
+    font-family: "Arimo" !important;
+    font-weight: 400;
+}
+
+.flex-row {
+    display: flex;
+    flex-flow: row;
+    justify-content: space-between;
+}
+
+
+.el-card {
+    box-shadow: 2px 4px 25px rgba(0, 0, 0, 0.1);
+    background-clip: border-box;
+}
+
+.el-card:hover {
+    box-shadow: 2px 8px 45px rgba(0, 0, 0, 0.15);
+    transform: translate3d(0, -2px, 0);
+}
+
+.m-card button {
+    background: #019875 !important;
+    margin-bottom: 15px;
+}
+
+.m-card {
+    margin: 1rem;
+    background: white;
+    box-shadow: 2px 4px 25px rgba(0, 0, 0, 0.1);
+    border-radius: 5px;
+    overflow: hidden;
+    transition: all .2s linear;
+    cursor: pointer;
+    height: auto;
+}
+
+.img-frame {
+    position: relative;
+}
+
+.icon-div {
+    position: absolute;
+    top: 15px;
+    right: 20px;
+}
+
+.hide {
+    display: none !important;
+}
+
+.foodname-mg {
+    margin-top: 25px !important;
+}
+
+.adm-card ul {
+    position: absolute;
+    top: 127px;
+    right: 45px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    width: 100%;
+}
+
+.adm-card ul li {
+    list-style: none;
+}
+
+.fa-ellipsis-v {
+    color: #FFF !important;
+}
+
+.icn {
+    color: #000 !important;
+    margin-bottom: 15px;
+    position: absolute;
+    top: 15px;
+    right: 20px;
+    font-size: 1.1em !important;
+}
+
+.adm-card ul li a {
+    color: #FFF;
+    text-decoration: none;
+    height: auto;
+    width: 100%;
+    padding: 3px !important;
+    border-radius: 5px !important;
+}
+
+.adm-card ul li:nth-child(1) {
+    position: absolute;
+    left: 60px;
+    margin-right: 15px;
+}
+
+.adm-card ul li:nth-child(2) {
+    position: absolute;
+    right: 0px;
+    margin-right: -25px;
+}
+
+.adm-card {
+    margin: 1rem;
+    height: auto;
+    background: white;
+    box-shadow: 2px 4px 25px rgba(0, 0, 0, 0.1);
+    border-radius: 5px;
+    overflow: hidden;
+    transition: all .2s linear;
+    cursor: pointer;
+    height: 300px;
+}
+
+.adm-card img {
+    height: 140px;
+}
+
+#adm-food {
+    padding-top: 4px !important;
+}
+
+.m-card:hover {
+    box-shadow: 2px 8px 45px rgba(0, 0, 0, 0.15);
+    transform: translate3d(0, -2px, 0);
+}
+
+.adm-card:hover {
+    box-shadow: 2px 8px 45px rgba(0, 0, 0, 0.15);
+    transform: translate3d(0, -2px, 0);
+}
+
+.stat-div h2, .stat-div h3 {
+    margin: 0;
+}
+
+.stat-container {
+    margin: 30px auto 0 auto;
+    padding: 0 20% 0 20%;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+
+.stat {
+    padding: 10px;
+    box-sizing: border-box;
+    margin-bottom: 20px;
+    flex: 1;
+    flex-basis: 30%;
+}
+
+.stat-div {
+    display: flex;
+    flex-direction: column;
+    justify-content: right;
+}
+
+@media screen and (min-width: 500px) {
+    .m-card {
+        width: calc(50% - 2rem);
+    }
+    .adm-card {
+        width: calc(50% - 2rem);
+    }
+    .order-card {
+        width: calc(50% - 2rem);
+        margin: 1em;
+    }
+}
+
+@media screen and (min-width: 1000px) {
+    .m-card {
+        width: calc(25% - 2rem);
+    }
+    .adm-card {
+        width: calc(25% - 2rem);
+    }
+    .order-card {
+        width: calc(25% - 2rem);
+        margin: 1em;
+    }
+    .stat-container {
+        display: flex;
+        justify-content: space-between;
+    }
+
+    .stat {
+        margin-right: 20px;
+    }
+}
+
+@media screen and (min-width: 459px) {
+    .stat-container {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+    }
+}
