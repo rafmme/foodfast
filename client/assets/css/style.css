@@ -36,12 +36,24 @@ body {
 }
 
 .alert {
-    padding: 10px;
-    background-color: #f44336;
+    background: #e74c3c !important;
+    padding: 5px 10px 5px 10px;
     color: white;
     opacity: 1;
     transition: opacity 0.6s;
     margin-bottom: 15px;
+    font-family: "Arimo" !important;
+    border-radius: 5px;
+}
+
+.alert p {
+    height: auto;
+    width: auto;
+    font-size: 15px !important;
+}
+
+#signUpErrorDiv {
+    display: none;
 }
 
 footer {
