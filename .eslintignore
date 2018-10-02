@@ -7,3 +7,4 @@ dist/
 .env
 UI/
 dummyServer/
+client/assets/js/main.js

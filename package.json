@@ -81,7 +81,9 @@
       "dummyServer/",
       "distDummy/",
       "UI",
-      "dist/"
+      "dist/",
+      "client",
+      "server/app.js"
     ]
   }
 }
