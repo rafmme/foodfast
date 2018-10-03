@@ -2,6 +2,7 @@
 import dotenv from 'dotenv';
 import bodyParser from 'body-parser';
 import cors from 'cors';
+import path from 'path';
 import express from 'express';
 import logger from 'volleyball';
 import expressValidation from 'express-validator';
@@ -25,7 +26,7 @@ app.use(expressValidation());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cors());
-app.use(express.static('client'));
+app.use(express.static(path.join(__dirname, '../client/')));
 app.use('/', apiRouter);
 
 app.get('/', (req, res) => res.status(200).send({
