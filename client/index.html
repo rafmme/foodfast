@@ -1,0 +1,89 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Home | FoodFast</title>
+    <link rel="stylesheet" href="./assets/css/style.css">
+    <link rel="stylesheet" href="./assets/css/page.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Pacifo">
+    <link rel="stylesheet " href="https://fonts.googleapis.com/css?family=Arimo:300,400,700 ">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:300,400,700">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="shortcut icon" href="./assets/images/favicon.ico" type="image/x-icon">
+</head>
+
+<body>
+    <div class="wrapper">
+        <header id="header">
+            <nav class="topnav" id="myTopnav">
+                <a href="#home" id="brand">FoodFast</a>
+                <div id="rule"></div>
+                <div class="lnk">
+                    <a class="alink" style="display: none;">_</a>
+                    <a href="orders.html">
+                        <i class="fa fa-money"></i> My Orders</a>
+                    <a href="infopage.html">
+                        <i class="fa fa-info-circle"></i> About Us</a>
+                    <a href="signup.html">
+                        <i class="fa fa-sign-out"></i> Sign Out</a>
+                </div>
+                <a href="javascript:void(0);" id="toggle" class="icon" onclick="toggleBtn()">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </a>
+            </nav>
+        </header>
+        <div class="showcase">
+            <div class="search-container">
+                <h2 class="text-white bg-green animate" id="showcase-message">Looking for what to eat?</h2>
+                <form action="">
+                    <div class="input-group">
+                        <input type="search" name="" id="search-box" placeholder="Search for food" required>
+                        <button type="submit" class="bg-red">GO</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <section id="services" class="section-padding">
+            <h2 class="text-center" style="color: #d64541;">Our Meal Offers</h2>
+            <div class="meals-container" id="menu-holder"></div>
+            <div class="pagination">
+                <a href="#">&laquo;</a>
+                <a href="#">1</a>
+                <a class="active" href="#">2</a>
+                <a href="#">3</a>
+                <a href="#">4</a>
+                <a href="#">&raquo;</a>
+            </div>
+        </section>
+    </div>
+    <div id="make-order" class="modal">
+        <form action="orders.html" class="container modal-content animate" id="order-form">
+            <div class="imgcontainer">
+                <span style="margin-top: -15px;" onclick="closeModal('make-order')" class="close" title="Close Modal">&times;</span>
+            </div>
+            <h3>Place Order</h3>
+            <label for="title">Food Name</label>
+            <input type="text" name="" id="title" value="Flying Sphagethti" disabled>
+            <label for="qty">Quantity</label>
+            <input type="number" value="1" name="" id="qty" required>
+            <label for="phone">Phone Number</label>
+            <input type="tel" name="" id="phone" value="08112345678" required placeholder="Phone Number">
+            <label for="address">Delivery Address</label>
+            <input type="text" name="" id="address" value="235 Ikorodu, Lagos" required placeholder="Delivery Location">
+            <label for="price">Total Price</label>
+            <input type="text" value="₦ 16,700.50" name="" id="price" disabled>
+            <button style="margin-top: auto;" class="bg-green" type="submit">Place Order</button>
+        </form>
+    </div>
+    <footer>
+        <p class="text-center">&copy; 2018 FoodFast</p>
+    </footer>
+    <script src="./assets/js/main.js"></script>
+    <script src="./app/home.js"></script>
+</body>
+
+</html>
