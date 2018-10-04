@@ -35,6 +35,23 @@ body {
     min-height: 100%;
 }
 
+.spinner-holder {
+    position: absolute;
+    top: 50%;
+    left: 15%;
+    right: 15%;
+    z-index: 1000;
+}
+
+.spinner-text-color {
+    color: #019875 !important;
+}
+
+@keyframes spin {
+    from { transform: rotate(0deg) }
+    to { transform: rotate(360deg) }
+}
+
 .alert {
     background: #e74c3c !important;
     padding: 5px 10px 5px 10px;
@@ -116,6 +133,7 @@ table tr {
     background-color: #f8f8f8;
     border: 1px solid #ddd;
     padding: .35em;
+    font-family: "Arimo", "Lato";
     cursor: pointer;
 }
 table th,table td {
@@ -796,7 +814,7 @@ header .topnav span {
     }
     #rule {
         border: 0.4px solid #F5F7FA;
-        }
+    }
   }
 
   @media screen and (max-width: 500px) {

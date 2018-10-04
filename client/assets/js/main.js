@@ -1,7 +1,30 @@
-const editMealModal = document.getElementById('edit-meal');
-const updateOrderModal = document.getElementById('update');
-const addMealModal = document.getElementById('add-meal');
+const uToken = localStorage.getItem('userToken');
+const loginLink = document.getElementById('login-link');
+const signUpLink = document.getElementById('signup-link');
+const getStartedBtn = document.getElementById('showcase-btn');
 
+/**
+ * @function
+ * @description a function to logout a user
+ * @returns {undefined}
+ */
+// eslint-disable-next-line no-unused-vars
+const logout = () => {
+  localStorage.removeItem('userToken');
+  window.location = '../../infopage.html';
+};
+
+if (uToken !== null) {
+  if (
+    loginLink !== null
+        && signUpLink !== null
+        && getStartedBtn !== null
+  ) {
+    loginLink.style.display = 'none';
+    signUpLink.style.display = 'none';
+    getStartedBtn.style.display = 'none';
+  }
+}
 const toggleBtn = () => {
   const x = document.getElementById('myTopnav');
   if (x.className === 'topnav') {
@@ -9,10 +32,6 @@ const toggleBtn = () => {
   } else {
     x.className = 'topnav';
   }
-};
-
-const goToOrderpage = () => {
-  window.location.href = 'makeorder.html';
 };
 
 const closeModalForm = (elemID) => {
@@ -29,8 +48,10 @@ const closeModal = (elemID) => {
 };
 
 const showModal = (elemID) => {
-  document.getElementById(elemID).style.display = 'block';
-  closeModalForm(elemID);
+  if (document.getElementById(elemID) !== null) {
+    document.getElementById(elemID).style.display = 'block';
+    closeModalForm(elemID);
+  }
 };
 
 const close = document.getElementsByClassName('closebtn');
@@ -62,7 +83,7 @@ function initMap() {
 
 const showMenu = (elemID) => {
   const menuItem = document.getElementById(elemID);
-  menuItem.classList.toggle('hide');
+  if (menuItem !== null) {
+    menuItem.classList.toggle('hide');
+  }
 };
-
-showMenu();

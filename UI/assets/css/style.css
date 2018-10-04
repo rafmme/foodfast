@@ -25,6 +25,21 @@ html {
     height: 100%;
 }
 
+.alert {
+    background: #e74c3c;
+    padding: 5px 10px 5px 10px;
+    color: white;
+    opacity: 1;
+    transition: opacity 0.6s;
+    margin-bottom: 15px;
+    font-family: "Arimo" !important;
+    border-radius: 5px;
+}
+
+.action-alert {
+    margin: 10px 10px 0px 60%;
+}
+
 body {
     margin: 0px;
     height: 100%;
@@ -783,6 +798,9 @@ header .topnav span {
   }
 
   @media screen and (max-width: 600px) {
+    .action-alert {
+        margin: 10px 3% 5px 3%;
+    }
     .section-p-15 {
         font-size: 15px;
     }

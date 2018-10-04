@@ -1,0 +1,118 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Orders History | FoodFast</title>
+    <link rel="stylesheet" href="./assets/css/style.css">
+    <link rel="stylesheet" href="./assets/css/page.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Pacifo">
+    <link rel="stylesheet " href="https://fonts.googleapis.com/css?family=Arimo:300,400,700">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:300,400,700">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="shortcut icon" href="./assets/images/favicon.ico" type="image/x-icon">
+</head>
+
+<body>
+    <div class="spinner-holder" id="loader">
+        <h2 class="text-center spinner-text-color"><i class="fa fa-spinner fa-spin"></i> Loading...</h2>
+    </div>
+    <div class="wrapper" id="content-wrapper">
+        <header id="header">
+            <nav class="topnav" id="myTopnav">
+                <a href="index.html" id="brand">FoodFast</a>
+                <div id="rule"></div>
+                <div class="lnk">
+                    <a class="alink" style="display: none;">_</a>
+                    <a href="index.html">
+                        <i class="fa fa-home"></i> Home</a>
+                    <a href="javascript:void(0);" onclick="logout()">
+                        <i class="fa fa-sign-out"></i> Sign-out</a>
+                </div>
+                <a href="javascript:void(0);" id="toggle" class="icon" onclick="toggleBtn()">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </a>
+            </nav>
+        </header>
+        <h2 class="text-center" style="margin-top: 50px">My Orders History</h2>
+        <div class="stat-container stat-card">
+            <div class="stat m-card">
+                <div class="stat-div text-center">
+                    <h3 class="animate text-primary-color">New Orders</h3>
+                    <h2 class="animate text-primary-color" id="new-order-stat"></h2>
+                </div>
+            </div>
+            <div class="stat m-card">
+                <div class="stat-div text-center">
+                    <h3 class="animate text-orange">Orders being processed</h3>
+                    <h2 class="animate text-orange" id="processed-order-stat"></h2>
+                </div>
+            </div>
+            <div class="stat m-card">
+                <div class="stat-div text-center">
+                    <h3 class="animate text-primary-green">Completed Orders</h3>
+                    <h2 class="animate text-primary-green" id="complete-order-stat"></h2>
+                </div>
+            </div>
+            <div class="stat m-card">
+                <div class="stat-div text-center">
+                    <h3 class="animate text-orange">Total Orders</h3>
+                    <h2 class="animate text-orange" id="total-order-stat"></h2>
+                </div>
+            </div>
+        </div>
+        <div class="row table-padding">
+            <form action="#" method="post">
+                <div class="row order-box-p" style="width: 70%">
+                    <div class="col-3-2">
+                        <input type="search" name="" id="order-search-box" required placeholder="Search orders">
+                    </div>
+                    <div class="col-2-3">
+                        <select id="order-filter" onchange="filterUserOrders()">
+                            <option value="All">All</option>
+                            <option value="New">New</option>
+                            <option value="Processing">Processing</option>
+                            <option value="Complete">Completed</option>
+                            <option value="Cancelled">Cancelled</option>
+                        </select>
+                    </div>
+                </div>
+            </form>
+            <div id="no-orders-text" class="text-center" style="display: none">
+                <h1>No Orders yet</h1>
+            </div>
+            <h2 class="search-message" id="search-message"></h2>
+            <table id="orders-table" class="el-card">
+                <thead>
+                    <tr>
+                        <th scope="col">OrderID</th>
+                        <th scope="col">Food Item</th>
+                        <th scope="col">Qty</th>
+                        <th scope="col">Amount</th>
+                        <th scope="col">Date</th>
+                        <th scope="col">Status</th>
+                    </tr>
+                </thead>
+                <tbody id="order-table-body">
+                </tbody>
+            </table>
+            <div class="pagination" id="pagination">
+                <a href="javascript:prevPage(paginationArray)" id="btn_prev">&laquo;</a>
+                <a href="javascript:nextPage(paginationArray)" id="btn_next">&raquo;</a>
+                <a id="page"></a>
+            </div>
+        </div>
+    </div>
+    <div id="modals-holder"></div>
+    <footer>
+        <p class="text-center">&copy; 2018 FoodFast</p>
+    </footer>
+    <script src="./app/jwt-decode.js"></script>
+    <script src="./assets/js/main.js"></script>
+    <script src="./app/orders.js"></script>
+</body>
+
+</html>
