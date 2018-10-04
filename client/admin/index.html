@@ -1,0 +1,108 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Admin Home | FoodFast</title>
+    <link rel="stylesheet" href="../assets/css/style.css">
+    <link rel="stylesheet" href="../assets/css/page.css">
+    <link rel="stylesheet " href="https://fonts.googleapis.com/css?family=Pacifo ">
+    <link rel="stylesheet " href="https://fonts.googleapis.com/css?family=Lato:300,400,700 ">
+    <link rel="stylesheet " href="https://fonts.googleapis.com/css?family=Arimo:300,400,700 ">
+    <link rel="stylesheet " href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css ">
+    <link rel="shortcut icon " href="../assets/images/favicon.ico " type="image/x-icon ">
+</head>
+
+<body>
+    <div class="wrapper ">
+        <header id="header">
+            <nav class="topnav" id="myTopnav">
+                <a href="index.html" id="brand">FoodFast</a>
+                <div id="rule"></div>
+                <div class="lnk">
+                    <a class="alink" style="display: none;">_</a>
+                    <a href="#" class="no-link">
+                        <i class="fa fa-user"></i> Admin</a>
+                    <a href="foods.html">
+                        <i class="fa fa-spoon"></i> View Foods</a>
+                    <a href="javascript:void(0);" id="adm-home-logout">
+                        <i class="fa fa-sign-out"></i> Sign out</a>
+                </div>
+                <a href="javascript:void(0);" id="toggle" class="icon" onclick="toggleBtn()">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </a>
+            </nav>
+        </header>
+        <h2 class="text-center " style="margin-top: 50px ">All Orders</h2>
+        <div class="stat-container stat-card">
+            <div class="stat m-card">
+                <div class="stat-div text-center">
+                    <h3 class="animate text-primary-color">New Orders</h3>
+                    <h2 class="animate text-primary-color" id="new-order-stat"></h2>
+                </div>
+            </div>
+            <div class="stat m-card">
+                <div class="stat-div text-center">
+                    <h3 class="animate text-orange">Orders being processed</h3>
+                    <h2 class="animate text-orange" id="processed-order-stat"></h2>
+                </div>
+            </div>
+            <div class="stat m-card">
+                <div class="stat-div text-center">
+                    <h3 class="animate text-primary-green">Completed Orders</h3>
+                    <h2 class="animate text-primary-green" id="complete-order-stat"></h2>
+                </div>
+            </div>
+            <div class="stat m-card">
+                <div class="stat-div text-center">
+                    <h3 class="animate text-orange">Total Orders</h3>
+                    <h2 class="animate text-orange" id="total-order-stat"></h2>
+                </div>
+            </div>
+        </div>
+        <div class="tab" id="all-orders">
+            <div class="row table-padding">
+                <form action="#">
+                    <div class="row order-box-p" style="width: 70%">
+                        <div class="col-3-2">
+                            <input type="search" name="" id="order-search-box" required placeholder="Search Orders">
+                        </div>
+                        <div class="col-2-3">
+                            <select>
+                                <option value="all">All</option>
+                                <option value="New">New</option>
+                                <option value="Processing">Processing</option>
+                                <option value="Cancelled">Cancelled</option>
+                                <option value="Complete">Complete</option>
+                            </select>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div id="no-orders-text" class="text-center" style="display: none">
+                    <h1>No Orders yet</h1>
+            </div>
+            <div class="orders-container" id="orders-holder">
+            </div>
+            <div class="pagination" style="display: none;">
+                <a href="#">&laquo;</a>
+                <a href="#">1</a>
+                <a href="#">2</a>
+                <a href="#">3</a>
+                <a class="active" href="#">4</a>
+                <a href="#">&raquo;</a>
+            </div>
+        </div>
+    </div>
+    <div id="modals-holder"></div>
+    <footer>
+        <p class="text-center ">&copy; 2018 FoodFast</p>
+    </footer>
+    <script src="../assets/js/main.js "></script>
+    <script src="../app/adminhome.js"></script>
+</body>
+
+</html>
