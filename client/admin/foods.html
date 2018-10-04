@@ -1,0 +1,126 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Foods-Admin | FoodFast</title>
+    <link rel="stylesheet" href="../assets/css/style.css">
+    <link rel="stylesheet" href="../assets/css/page.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Pacifo">
+    <link rel="stylesheet " href="https://fonts.googleapis.com/css?family=Arimo:300,400,700 ">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:300,400,700">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="shortcut icon" href="../assets/images/favicon.ico" type="image/x-icon">
+</head>
+
+<body>
+    <div class="wrapper">
+        <header id="header">
+            <nav class="topnav" id="myTopnav">
+                <a href="index.html" id="brand">FoodFast</a>
+                <div id="rule"></div>
+                <div class="lnk">
+                    <a class="alink" style="display: none;">_</a>
+                    <a href="#" class="no-link">
+                        <i class="fa fa-user"></i> Admin</a>
+                    <a href="index.html#all-orders">
+                        <i class="fa fa-dollar"></i> View Orders</a>
+                    <a href="../index.html" id="adm-food-logout">
+                        <i class="fa fa-sign-out"></i> Sign out</a>
+                </div>
+                <a href="javascript:void(0);" id="toggle" class="icon" onclick="toggleBtn()">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </a>
+            </nav>
+        </header>
+        <div class=" row center">
+            <h2 id="new-orders" style="margin-top: 50px;">All food items</h2>
+            <div class="row table-padding">
+                <form action="#">
+                    <div class="row order-box-p" style="width: 70%">
+                        <div class="col-3-2">
+                            <input type="search" name="" id="order-search-box" required placeholder="Search foods">
+                        </div>
+                        <div class="col-2-3">
+                            <select>
+                                <option value="all">All</option>
+                                <option value="newest">newest</option>
+                                <option value="oldest">oldest</option>
+                            </select>
+                        </div>
+                    </div>
+                </form>
+                <button class="add-meal-btn el-card" onclick="showModal('add-meal')">
+                    <i class="fa fa-plus"></i> Add New Food</button>
+            </div>
+            <br>
+            <section id="adm-food" class="section-padding">
+                <div class="meals-container" id="meals-holder">
+                </div>
+            </section>
+            <div class="pagination" style="display: none;">
+                <a href="#">&laquo;</a>
+                <a href="#">1</a>
+                <a class="active" href="#">2</a>
+                <a href="#">3</a>
+                <a href="#">4</a>
+                <a href="#">&raquo;</a>
+            </div>
+        </div>
+    </div>
+    <div id="add-meal" class="modal">
+        <form class="container modal-content animate" id="add-form">
+            <div class="imgcontainer">
+                <span style="margin-top: -15px;" onclick="closeModal('add-meal')" class="close" title="Close Modal">&times;</span>
+            </div>
+            <h3>Add New Food Item</h3>
+            <div class="alert" id="failAlert" style="display: none">
+                <p id="mealMsg" style="margin-top: 10px"></p>
+            </div>
+            <div class="alert bg-green text-center" id="mealSuccessAlert" style="display: none">
+                <i class="fa fa-check"></i> Meal was added successfully
+            </div>
+            <label for="title">Food Name</label>
+            <input type="text" name="" id="title" required placeholder="Food Name">
+            <label for="desc">Description</label>
+            <textarea style="height: 70px;" name="" id="desc" cols="30" rows="10" required placeholder="Food Description"></textarea>
+            <label for="price">Price</label>
+            <input type="number" name="" id="price" required placeholder="Price">
+            <label for="image">Image</label>
+            <input type="file" name="" id="image">
+            <button style="margin-top: auto;" class="btn" type="submit">Add Meal</button>
+        </form>
+    </div>
+    <div class="modal" id="del-confirmation">
+        <div class="container modal-content animate">
+            <div class="imgcontainer">
+                <span style="margin-top: -15px; margin-left: 5px;" onclick="closeModal('del-confirmation')" class="close" title="Close Modal">&times;</span>
+            </div>
+            <h3>Confirm Action</h3>
+            <h4 class="text-center" style="margin-top: 50px;">
+                Are you sure you want to delete food item "Flying Rice" ?
+            </h4>
+            <div class="row" style="margin-bottom: 15px;">
+                <div class="col-2">
+                    <button class="btn bg-green" onclick="closeModal('del-confirmation')">Yes</button>
+                </div>
+                <div class="col-2">
+                    <div class="mg-left-10">
+                        <button class="btn bg-red mg-top-5" onclick="closeModal('del-confirmation')">No</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <footer>
+        <p class="text-center">&copy; 2018 FoodFast</p>
+    </footer>
+    <script src="../assets/js/main.js"></script>
+    <script src="../app/food.js"></script>
+
+</body>
+
+</html>
