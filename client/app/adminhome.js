@@ -106,7 +106,54 @@ const getAllOrders = async () => {
             </div>
         </div>
     </div>
-  </div>`;
+  </div>
+  <div id="update_${order.orderId}" class="modal">
+        <form class="container modal-content animate" id="update-form">
+            <div class="imgcontainer">
+                <span style="margin-top: -15px;" onclick="closeModal('update_${order.orderId}')" class="close" title="Close Modal">&times;</span>
+            </div>
+            <h3>Update Order</h3>
+            <div class="alert" id="orderFailAlert_${order.orderId}" style="display: none">
+            <p id="orderMsg_${order.orderId}" style="margin-top: 10px"></p>
+           </div>
+           <div class="alert bg-green text-center" id="orderSuccessAlert_${order.orderId}" style="display: none">
+           <i class="fa fa-check"></i> Order was updated successfully
+           </div>
+            <div class="row">
+                <div class="col-2">
+                    <label for="orderID">Order ID</label>
+                    <input type="text" name="" id="orderID" value="${order.orderId}" disabled>
+                </div>
+                <div class="col-2">
+                    <div class="mg-left-10">
+                        <label for="customer">Customer</label>
+                        <input type="text" name="" id="customer" value="${order.customer.email}" disabled>
+                    </div>
+                </div>
+            </div>
+            <label for="title">Food</label>
+            <input type="text" name="" id="title" disabled value="${order.food.title}">
+            <div class="row">
+                <div class="col-2"> <label for="qty">Quantity</label>
+                    <input type="number" value="${order.quantity}" name="" id="qty" disabled>
+                </div>
+                <div class="col-2">
+                    <div class="mg-left-10">
+                        <label for="price">Total Price</label>
+                        <input type="text" value="₦ ${order.totalPrice}" name="" id="price" disabled>
+                    </div>
+                </div>
+            </div>
+            <label for="Status">Order Status</label>
+            <select name="" id="status_${order.orderId}" required>
+                <option value="${order.status}">${order.status}</option>
+                <option value="Cancelled">Cancel</option>
+                <option value="Processing">Processing</option>
+                <option value="Complete">Complete</option>
+            </select>
+            <button onclick="updateOrder('${order.orderId}')" style="margin-top: auto;" type="button">Update Order Status</button>
+        </form>
+    </div>`;
     switch (order.status) {
       case 'New':
         ordersCard += `<div class="order-card el-card bd-left-red" style="padding: 10px;" ondblclick="showModal('${order.orderId}')">
@@ -180,3 +227,69 @@ const getAllOrders = async () => {
 
   // invoke getAllOrders function when the window load
 window.onload = getAllOrders();
+
+/**
+ * @description a function to handle the display of error messages
+ * @param {Object} errorsObject an Object containing errors
+ * @param {Object} divHolder a div tag that houses the error P tag
+ * @param {Object} pHolder a P tag that contains the error message
+ * @returns {undefined}
+ */
+const showErrorMessages = (errorsObject, divHolder, pHolder) => {
+  let err = '<b><i class="fa fa-warning"></i> Error!!!</b><br>';
+  Object.values(errorsObject).forEach((e) => {
+    err = `${err + e};<br>`;
+  });
+  pHolder.innerHTML = err;
+  divHolder.style.opacity = '1';
+  divHolder.style.display = 'block';
+  setTimeout(() => {
+    divHolder.style.display = 'none';
+  }, 5000);
+};
+
+/**
+ * @function
+ * @description a funtion that handles the updating of an order status
+ * @param {*} id
+ * @returns {undefined}
+ */
+// eslint-disable-next-line no-unused-vars
+const updateOrder = async (id) => {
+  const errorDiv = document.getElementById(`orderFailAlert_${id}`);
+  const errorMessage = document.getElementById(`orderMsg_${id}`);
+  const successDiv = document.getElementById(`orderSuccessAlert_${id}`);
+  const orderStatus = document.getElementById(`status_${id}`).value;
+  const orderData = JSON.stringify({
+    status: orderStatus
+  });
+
+  const url = `../api/v1/orders/${id}`;
+  const resp = await fetch(url, {
+    method: 'PUT',
+    mode: 'cors',
+    headers: new Headers({
+      'Content-Type': 'application/json',
+      authorization: `Bearer ${token}`
+    }),
+    body: orderData
+  });
+
+  const result = await resp.json();
+  const {
+    status,
+    success,
+    order,
+    error
+  } = result;
+  if (status === 200 && success && order) {
+    successDiv.style.display = 'block';
+    setTimeout(() => {
+      successDiv.style.display = 'none';
+      window.location = 'index.html';
+    }, 1000);
+    return;
+  } if (!success) {
+    showErrorMessages(error, errorDiv, errorMessage);
+  }
+};
