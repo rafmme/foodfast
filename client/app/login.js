@@ -78,6 +78,7 @@ const login = async (evt) => {
   } = result;
   if (status === 200 && success && token) {
     if (user.isAdmin === true) {
+      sessionStorage.setItem('userToken', token);
       window.location = 'admin/index.html';
       return;
     }
