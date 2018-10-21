@@ -56,6 +56,11 @@ const signUp = async (evt) => {
   const fullname = document.getElementById('fullname').value;
   const email = document.getElementById('email').value;
   const password = document.getElementById('password').value;
+  const signUpBtn = document.getElementById('signUp-btn');
+  signUpBtn.style.background = 'darkgray';
+  signUpBtn.style.color = 'white';
+  signUpBtn.innerHTML = '<i class="fa fa-spinner fa-spin"></i> Signing you up...';
+  signUpBtn.disabled = true;
   const signUpData = JSON.stringify({
     fullname,
     password,
@@ -63,6 +68,9 @@ const signUp = async (evt) => {
   });
   const validationResult = validateSignUpInput(fullname, password);
   if (Object.keys(validationResult).length > 0) {
+    signUpBtn.style.background = '#d64541';
+    signUpBtn.innerText = 'Create account';
+    signUpBtn.disabled = false;
     showErrorMessages(validationResult, errorDiv, errorMessage);
     return;
   }
@@ -85,16 +93,19 @@ const signUp = async (evt) => {
     error
   } = result;
   if (status === 201 && success && token) {
-    sessionStorage.setItem('userToken', token);
+    localStorage.setItem('userToken', token);
     window.location = 'index.html';
     return;
   } if (!success) {
+    signUpBtn.style.background = '#d64541';
+    signUpBtn.innerText = 'Create account';
+    signUpBtn.disabled = false;
     showErrorMessages(error, errorDiv, errorMessage);
   }
 };
 
 window.onload = () => {
-  if (sessionStorage.getItem('userToken')) {
+  if (localStorage.getItem('userToken')) {
     window.location = 'index.html';
   }
 };
