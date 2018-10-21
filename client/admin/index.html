@@ -15,18 +15,21 @@
 </head>
 
 <body>
-    <div class="wrapper ">
+    <div class="spinner-holder" id="loader">
+        <h2 class="text-center spinner-text-color"><i class="fa fa-spinner fa-spin"></i> Loading...</h2>
+    </div>
+    <div class="wrapper" id="content-wrapper">
         <header id="header">
             <nav class="topnav" id="myTopnav">
                 <a href="index.html" id="brand">FoodFast</a>
                 <div id="rule"></div>
                 <div class="lnk">
                     <a class="alink" style="display: none;">_</a>
-                    <a href="#" class="no-link">
+                    <a class="no-link">
                         <i class="fa fa-user"></i> Admin</a>
                     <a href="foods.html">
                         <i class="fa fa-spoon"></i> View Foods</a>
-                    <a href="javascript:void(0);" id="adm-home-logout">
+                    <a href="javascript:void(0);" onclick="logout()">
                         <i class="fa fa-sign-out"></i> Sign out</a>
                 </div>
                 <a href="javascript:void(0);" id="toggle" class="icon" onclick="toggleBtn()">
@@ -71,8 +74,8 @@
                             <input type="search" name="" id="order-search-box" required placeholder="Search Orders">
                         </div>
                         <div class="col-2-3">
-                            <select>
-                                <option value="all">All</option>
+                            <select id="order-filter" onchange="filterUserOrders()">
+                                <option value="All">All</option>
                                 <option value="New">New</option>
                                 <option value="Processing">Processing</option>
                                 <option value="Cancelled">Cancelled</option>
@@ -83,17 +86,14 @@
                 </form>
             </div>
             <div id="no-orders-text" class="text-center" style="display: none">
-                    <h1>No Orders yet</h1>
+                <h1>No Orders yet</h1>
             </div>
-            <div class="orders-container" id="orders-holder">
-            </div>
-            <div class="pagination" style="display: none;">
-                <a href="#">&laquo;</a>
-                <a href="#">1</a>
-                <a href="#">2</a>
-                <a href="#">3</a>
-                <a class="active" href="#">4</a>
-                <a href="#">&raquo;</a>
+            <h2 class="search-message" id="search-message"></h2>
+            <div class="orders-container" id="orders-holder"></div>
+            <div class="pagination" id="pagination">
+                <a href="javascript:prevPage(paginationArray)" id="btn_prev">&laquo;</a>
+                <a href="javascript:nextPage(paginationArray)" id="btn_next">&raquo;</a>
+                <a id="page"></a>
             </div>
         </div>
     </div>
