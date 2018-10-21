@@ -37,13 +37,7 @@ app.get('/api-docs', (req, res) => res.redirect('https://app.swaggerhub.com/apis
 
 // Show 404 error for unexisting route on the app
 app.use((req, res) => {
-  res.status(404).send({
-    success: false,
-    status: 404,
-    error: {
-      message: 'Error! Path Not Found'
-    }
-  });
+  res.status(404).sendFile(path.join(__dirname, '../client/404Page.html'));
 });
 
 // Listen to app on port specified above
