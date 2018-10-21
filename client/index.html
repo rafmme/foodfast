@@ -15,7 +15,10 @@
 </head>
 
 <body>
-    <div class="wrapper">
+    <div class="spinner-holder" id="loader">
+        <h2 class="text-center spinner-text-color"><i class="fa fa-spinner fa-spin"></i> Loading...</h2>
+    </div>
+    <div class="wrapper" id="content-wrapper">
         <header id="header">
             <nav class="topnav" id="myTopnav">
                 <a href="#home" id="brand">FoodFast</a>
@@ -26,7 +29,7 @@
                         <i class="fa fa-money"></i> My Orders</a>
                     <a href="infopage.html">
                         <i class="fa fa-info-circle"></i> About Us</a>
-                    <a href="signup.html">
+                    <a href="javascript:void(0);" onclick="logout()">
                         <i class="fa fa-sign-out"></i> Sign Out</a>
                 </div>
                 <a href="javascript:void(0);" id="toggle" class="icon" onclick="toggleBtn()">
@@ -39,24 +42,20 @@
         <div class="showcase">
             <div class="search-container">
                 <h2 class="text-white bg-green animate" id="showcase-message">Looking for what to eat?</h2>
-                <form action="">
-                    <div class="input-group">
-                        <input type="search" name="" id="search-box" placeholder="Search for food" required>
-                        <button type="submit" class="bg-red">GO</button>
-                    </div>
-                </form>
+                <div class="input-group">
+                    <input type="search" name="" id="search-box" placeholder="Search for meal item" required>
+                    <button disabled type="submit" class="bg-red">GO</button>
+                </div>
             </div>
         </div>
         <section id="services" class="section-padding">
-            <h2 class="text-center" style="color: #d64541;">Our Meal Offers</h2>
+            <h2 id="offer-message" class="text-center" style="color: #d64541;">Our Meal Offers</h2>
+            <h2 id="search-message" class="search-message" style="color: #d64541;"></h2>
             <div class="meals-container" id="menu-holder"></div>
-            <div class="pagination">
-                <a href="#">&laquo;</a>
-                <a href="#">1</a>
-                <a class="active" href="#">2</a>
-                <a href="#">3</a>
-                <a href="#">4</a>
-                <a href="#">&raquo;</a>
+            <div class="pagination" id="pagination">
+                <a href="javascript:prevPage()" id="btn_prev">&laquo;</a>
+                <a href="javascript:nextPage()" id="btn_next">&raquo;</a>
+                <a id="page"></a>
             </div>
         </section>
     </div>
