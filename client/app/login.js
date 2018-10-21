@@ -49,12 +49,20 @@ const login = async (evt) => {
   evt.preventDefault();
   const email = document.getElementById('email').value;
   const password = document.getElementById('password').value;
+  const loginBtn = document.getElementById('login-btn');
+  loginBtn.style.background = 'darkgray';
+  loginBtn.style.color = 'white';
+  loginBtn.innerHTML = '<i class="fa fa-spinner fa-spin"></i> Logging you in...';
+  loginBtn.disabled = true;
   const loginData = JSON.stringify({
     password,
     email
   });
   const validationResult = validateLoginInput(password);
   if (Object.keys(validationResult).length > 0) {
+    loginBtn.style.background = '#d64541';
+    loginBtn.innerText = 'Login';
+    loginBtn.disabled = false;
     showErrorMessages(validationResult, errorDiv, errorMessage);
     return;
   }
@@ -78,21 +86,24 @@ const login = async (evt) => {
   } = result;
   if (status === 200 && success && token) {
     if (user.isAdmin === true) {
-      sessionStorage.setItem('userToken', token);
+      localStorage.setItem('userToken', token);
       window.location = 'admin/index.html';
       return;
     }
-    sessionStorage.setItem('userToken', token);
+    localStorage.setItem('userToken', token);
     window.location = 'index.html';
   } if (!success) {
     showErrorMessages(result.error, errorDiv, errorMessage);
+    loginBtn.style.background = '#d64541';
+    loginBtn.innerText = 'Login';
+    loginBtn.disabled = false;
   }
 };
 
 loginForm.addEventListener('submit', login);
 
 window.onload = () => {
-  if (sessionStorage.getItem('userToken')) {
+  if (localStorage.getItem('userToken')) {
     window.location = 'index.html';
   }
 };
