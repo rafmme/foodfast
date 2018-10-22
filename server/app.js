@@ -35,7 +35,17 @@ app.get('/', (req, res) => res.status(200).send({
 
 app.get('/api-docs', (req, res) => res.redirect('https://app.swaggerhub.com/apis-docs/faray/fast-food_fast/1.0'));
 
-// Show 404 error for unexisting route on the app
+// Show 404 error for inexisting route on the app
+app.use('/api/', (req, res) => {
+  res.status(404).send({
+    success: false,
+    status: 404,
+    error: {
+      message: 'Oops! the route you are trying to access does not exist'
+    }
+  });
+});
+
 app.use((req, res) => {
   res.status(404).sendFile(path.join(__dirname, '../client/404Page.html'));
 });
