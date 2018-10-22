@@ -31,11 +31,13 @@ class AuthController {
     User.create(signUpData).then((user) => {
       const data = {
         userId: user.id,
-        email: user.email,
-        fullname: user.fullname,
-        isAdmin
+        fullname,
+        email
       };
-      const token = generateToken(data);
+      const token = generateToken({
+        userId: user.id,
+        isAdmin
+      });
       return res.status(201).send({
         success: true,
         status: 201,

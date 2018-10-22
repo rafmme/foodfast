@@ -19,12 +19,11 @@ describe('API endpoint POST /auth/signup', () => {
         expect(res.body.token).to.be.an('string');
         expect(res.body.user.email).to.equal(mockUsers[4].email);
         expect(res.body.user.fullname).to.equal(mockUsers[4].fullname);
-        expect(res.body.user.isAdmin).to.equal(false);
         res.body.should.have.property('message');
         expect(res.body.message).to.equal('User account created successfully');
         expect(res.body.status).to.equal(201);
         expect(res.body.success).to.equal(true);
-        res.body.user.should.have.keys('userId', 'fullname', 'email', 'isAdmin');
+        res.body.user.should.have.keys('userId', 'fullname', 'email');
         done();
       });
   });
