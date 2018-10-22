@@ -135,19 +135,11 @@ describe('API endpoint POST /auth/login', () => {
         res.should.have.status(200);
         expect(res.body).to.be.an('object');
         res.body.should.have.property('token');
-        expect(res.body.user).to.be.an('object');
         expect(res.body.token).to.be.an('string');
-        expect(res.body.user.email).to.equal('admin@foodfast.com');
-        expect(res.body.user.fullname).to.equal('Food Fast');
-        expect(res.body.user.userId).to.equal('2a606085-5a9d-4481-a7e1-e7e98bea2160');
-        expect(res.body.user.isAdmin).to.equal(true);
         res.body.should.have.property('message');
         expect(res.body.message).to.equal('User sign-in was successful');
         expect(res.body.status).to.equal(200);
         expect(res.body.success).to.equal(true);
-        res.body.user.should.have.keys(
-          'userId', 'fullname', 'isAdmin', 'email'
-        );
         done();
       });
   });
