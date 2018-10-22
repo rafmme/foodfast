@@ -81,11 +81,12 @@ const login = async (evt) => {
   const {
     status,
     success,
-    token,
-    user
+    token
   } = result;
+
   if (status === 200 && success && token) {
-    if (user.isAdmin === true) {
+    const { isAdmin } = jwt_decode(token);
+    if (isAdmin === true) {
       localStorage.setItem('userToken', token);
       window.location = 'admin/index.html';
       return;
