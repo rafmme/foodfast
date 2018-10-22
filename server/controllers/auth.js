@@ -66,8 +66,6 @@ class AuthController {
         if (checkIfPasswordMatch(user.password, password.trim())) {
           const data = {
             userId: user.id,
-            email: user.email,
-            fullname: user.fullname,
             isAdmin: user.isAdmin
           };
           const token = generateToken(data);
@@ -75,7 +73,6 @@ class AuthController {
             success: true,
             status: 200,
             message: 'User sign-in was successful',
-            user: data,
             token,
           });
         }
