@@ -409,7 +409,37 @@ const processNewOrder = (newOrderStatus, id) => {
       wrapper.style.opacity = 1;
     }
     if (status === 200 && success && order) {
-      window.location = 'index.html';
+      const alertBox = document.getElementById('order-alert-div');
+      const alertBoxMessageElement = document.getElementById('order-alert-p');
+      const { orderId } = order;
+      switch (order.status) {
+        case 'Cancelled':
+          message = `<span><i class="fa fa-remove" aria-hidden="true"></i></span>
+           Order #${orderId.slice(0, 8)} has been cancelled`;
+          alertBox.style.display = 'block';
+          alertBoxMessageElement.innerHTML = message;
+          setTimeout(() => {
+            alertBox.style.display = 'none';
+            window.location = 'index.html';
+          }, 1800);
+          break;
+
+        case 'Processing':
+          message = `<span><i class="fa fa-check-square-o" aria-hidden="true"></i></span>
+           Order #${orderId.slice(0, 8)} has been accepted`;
+          alertBox.style.display = 'block';
+          alertBoxMessageElement.innerHTML = message;
+          setTimeout(() => {
+            alertBox.style.display = 'none';
+            window.location = 'index.html';
+          }, 1800);
+          break;
+
+        default:
+          alertBox.style.display = 'none';
+          window.location = 'index.html';
+          break;
+      }
     }
   };
 
@@ -474,7 +504,7 @@ const updateOrder = async (id) => {
     setTimeout(() => {
       successDiv.style.display = 'none';
       window.location = 'index.html';
-    }, 1000);
+    }, 1500);
     return;
   } if (!success) {
     updateOrdBtn.style.background = '#019875';
