@@ -291,7 +291,7 @@ const addMeal = async () => {
       setTimeout(() => {
         successDiv.style.display = 'none';
         window.location = 'foods.html';
-      }, 1000);
+      }, 1500);
       return;
     } if (!success) {
       addMealBtn.innerText = 'Add New Meal';

@@ -21,7 +21,7 @@ if (!token) {
 }
 
 let currentPage = 1;
-const recordsPerPage = 10;
+const recordsPerPage = 8;
 
 const numPages = contentArray => Math.ceil(contentArray.length / recordsPerPage);
 
@@ -37,14 +37,21 @@ const changePage = (page, contentArray) => {
     i < (page * recordsPerPage)
         && i < contentArray.length; i += 1
   ) {
-    const order = contentArray[i];
-    orderTableBody.innerHTML += `<tr onclick="showModal('${order.orderId}')">
-    <td data-label="OrderID">${order.orderId.slice(0, 8)}</td>
-    <td data-label="Food Item">${order.food.title}</td>
-    <td data-label="Qty">${order.quantity}</td>
-    <td data-label="Amount">₦ ${order.totalPrice}</td>
-    <td data-label="Date">${new Date(order.createdAt).toDateString()}</td>
-    <td data-label="Status">${order.status}</td>
+    const {
+      orderId,
+      food,
+      quantity,
+      totalPrice,
+      createdAt,
+      status
+    } = contentArray[i];
+    orderTableBody.innerHTML += `<tr onclick="showModal('${orderId}')">
+    <td data-label="OrderID">${orderId.slice(0, 8)}</td>
+    <td data-label="Food Item">${food.title}</td>
+    <td data-label="Qty">${quantity}</td>
+    <td data-label="Amount">₦ ${totalPrice}</td>
+    <td data-label="Date">${new Date(createdAt).toDateString()} ${new Date(createdAt).toLocaleTimeString()}</td>
+    <td data-label="Status">${status}</td>
     </tr>`;
   }
   pageSpan.innerText = `Page ${page} of ${numPages(contentArray)}`;

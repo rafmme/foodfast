@@ -63,6 +63,25 @@ body {
     border-radius: 5px;
 }
 
+.order-action-alert {
+    position: fixed;
+    right: 5px;
+    z-index: 2;
+    background: #019875;
+    padding: 5px 10px 5px 10px;
+    margin: 10px 10px 0px 60%;
+    color: white;
+    opacity: 1;
+    transition: opacity 0.6s;
+    margin-bottom: 15px;
+    font-family: "Arimo" !important;
+    border-radius: 5px;
+}
+
+#order-alert-div {
+    display: none;
+}
+
 .alert p {
     height: auto;
     width: auto;
@@ -826,6 +845,9 @@ header .topnav span {
   }
 
   @media screen and (max-width: 600px) {
+    .order-action-alert {
+        margin: 10px 3% 5px 3%;
+    }
     .section-p-15 {
         font-size: 15px;
     }
