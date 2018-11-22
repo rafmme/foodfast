@@ -399,8 +399,8 @@ describe('API endpoint POST /orders/', () => {
         res.body.should.have.property('order');
         expect(res.body.order).to.be.an('object');
         res.body.order.should.have.keys(
-          'id', 'foodId', 'totalPrice',
-          'customerId', 'quantity', 'createdAt',
+          'food', 'totalPrice', 'orderId',
+          'customer', 'quantity', 'createdAt',
           'updatedAt', 'deliveryAddress',
           'status', 'phoneNumber'
         );

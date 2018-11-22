@@ -34,6 +34,7 @@
   "author": "Timileyin E Farayola",
   "license": "MIT",
   "dependencies": {
+    "@sendgrid/mail": "^6.3.1",
     "babel-cli": "^6.26.0",
     "babel-preset-env": "^1.6.1",
     "babel-preset-stage-0": "^6.24.1",
@@ -87,7 +88,7 @@
     ]
   },
   "engines": {
-      "npm": "3.10.10",
-      "node": "6.11.3"
+    "npm": "3.10.10",
+    "node": "6.11.3"
   }
 }

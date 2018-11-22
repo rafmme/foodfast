@@ -3,6 +3,7 @@ import {
   Food,
   User
 } from '../models';
+import { sendEmailHelper } from '../helpers/utils';
 
 /**
  * @class OrderController
@@ -229,11 +230,35 @@ export default class OrderController {
       };
       const orderInfo = await Order.create(order);
       if (orderInfo) {
+        const customer = await User.findById(order.customerId);
+        const customerInfo = {
+          fullname: customer.fullname,
+          email: customer.email
+        };
+        const foodItem = {
+          title: food.title,
+          description: food.description,
+          imageUrl: food.imageUrl,
+          price: food.price
+        };
+        const orderData = {
+          orderId: orderInfo.id,
+          customer: customerInfo,
+          food: foodItem,
+          quantity: orderInfo.quantity,
+          totalPrice: orderInfo.totalPrice,
+          deliveryAddress: orderInfo.deliveryAddress,
+          phoneNumber: orderInfo.phoneNumber,
+          status: orderInfo.status,
+          createdAt: orderInfo.createdAt,
+          updatedAt: orderInfo.updatedAt,
+        };
+        sendEmailHelper(orderData);
         return res.status(201).send({
           success: true,
           status: 201,
           message: 'Order was made successfully',
-          order: orderInfo
+          order: orderData
         });
       }
     } catch (error) {
