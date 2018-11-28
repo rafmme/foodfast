@@ -84,6 +84,8 @@
       "UI",
       "dist/",
       "client",
+      "server/helpers/utils/mailUtil.js",
+      "server/helpers/utils/mailContentGenerator.js",
       "server/app.js"
     ]
   },
