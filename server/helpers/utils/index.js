@@ -2,9 +2,17 @@ import jwt from 'jsonwebtoken';
 import dotenv from 'dotenv';
 import bcrypt from 'bcrypt';
 import validator from 'validator';
+import sgMail from '@sendgrid/mail';
+import { generateEmailSubject } from './mailContentGenerator';
+import createHTMLEmail from './mailUtil';
 
 dotenv.config();
-const { JWT_KEY } = process.env;
+const {
+  JWT_KEY,
+  SENDGRID_API_KEY,
+  FOODFAST_EMAIL_ADDRESS,
+  ADMIN_EMAIL_ADDRESS
+} = process.env;
 
 /**
  * @description a function for generating a JWT token
@@ -69,14 +77,7 @@ const convertToCamelCase = (str) => {
 const convertToUnderscore = (str) => {
   let newStr = '';
   const isUpperCase = (alphab) => {
-    const arr = [
-      'A', 'B', 'C', 'D', 'E', 'F',
-      'G', 'H', 'I', 'J', 'K', 'L',
-      'M', 'N', 'O', 'P', 'Q', 'R',
-      'S', 'T', 'U', 'V', 'W', 'X',
-      'Y', 'Z'
-    ];
-    const isUpper = arr.includes(alphab);
+    const isUpper = alphab.match(/[A-Z]/g);
     return isUpper;
   };
   for (let i = 0; i < str.length; i += 1) {
@@ -128,6 +129,25 @@ const validateIdParam = (req, res, next) => {
   });
 };
 
+/**
+ * @description a function to send email with sendGrid
+ * @param {Object} orderData order data
+ * @returns {undefined} mails user
+ */
+const sendEmailHelper = (orderData) => {
+  const html = createHTMLEmail(orderData);
+  const subject = generateEmailSubject(orderData);
+  sgMail.setApiKey(SENDGRID_API_KEY);
+  const message = {
+    to: orderData.customer.email,
+    bcc: ADMIN_EMAIL_ADDRESS,
+    from: FOODFAST_EMAIL_ADDRESS,
+    subject,
+    html
+  };
+  sgMail.send(message).then(resp => (resp)).catch(err => (err));
+};
+
 export {
   convertToCamelCase,
   convertToUnderscore,
@@ -135,5 +155,6 @@ export {
   generateToken,
   encryptPassword,
   checkIfPasswordMatch,
-  validateIdParam
+  validateIdParam,
+  sendEmailHelper
 };
