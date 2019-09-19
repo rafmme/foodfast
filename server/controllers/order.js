@@ -178,6 +178,7 @@ export default class OrderController {
           updatedAt: updatedOrder.updatedAt,
         };
 
+        sendEmailHelper(orderInfo);
         return res.status(200).send({
           success: true,
           status: 200,

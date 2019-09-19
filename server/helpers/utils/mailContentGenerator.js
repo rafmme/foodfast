@@ -71,6 +71,34 @@ const generateEmailHeaderText = (data) => {
     We will update you soon on your order.
     </p>`;
       break;
+    case 'Processing':
+      headerText = `<h2 class="text-center header-text"><i class="fa fa-check-square-o" aria-hidden="true"></i> Your Order has been
+    confirmed
+    </h2>`;
+      messageBody = ` <p>
+    Hi <span class="span-text">${name}</span>, we are pleased to inform you that your order <span class="span-text">#${orderId.slice(0, 8)}</span>
+    has been confirmed. Thanks for patronizing us.
+    </p>`;
+      break;
+    case 'Cancelled':
+      headerText = `<h2 class="text-center cancel-header-text"><i class="fa fa-remove" aria-hidden="true"></i> Your Order has been
+    cancelled
+    </h2>`;
+      messageBody = `<p>
+    Hi <span class="span-text">${name}</span>, we are sorry to inform you that we won't be processing your
+    order <span class="span-text">#${orderId.slice(0, 8)}</span>
+    at this time, we are sorry for any inconviniences this may cause.
+    </p>`;
+      break;
+    case 'Complete':
+      headerText = `<h2 class="text-center header-text"><i class="fa fa-check-square-o" aria-hidden="true"></i> Your Order has been
+    marked as completed
+    </h2>`;
+      messageBody = `<p>
+    Hi <span class="span-text">${name}</span>, this is to inform you that your order <span class="span-text">#${orderId.slice(0, 8)}</span>
+    has been marked as completed. We look forward to more orders from you. Thanks for patronizing us.
+    </p>`;
+      break;
     default:
       break;
   }
@@ -89,6 +117,15 @@ const generateEmailSubject = ({
   switch (status) {
     case 'New':
       emailSubject = `Your Order #${orderId.slice(0, 8)} was placed successfully`;
+      break;
+    case 'Processing':
+      emailSubject = `Your Order #${orderId.slice(0, 8)} has been confirmed`;
+      break;
+    case 'Cancelled':
+      emailSubject = `Your Order #${orderId.slice(0, 8)} has been rejected`;
+      break;
+    case 'Complete':
+      emailSubject = `Your Order #${orderId.slice(0, 8)} has been marked completed`;
       break;
     default:
       break;

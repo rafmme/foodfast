@@ -9,6 +9,10 @@ Fast-Food-Fast​ is a food delivery service app for a restaurant.
 
 ### You can access the app live via [App Live URL](https://foodie21.herokuapp.com/index.html)
 
+<div style="text-align:center">
+    <img src="./gif/usage.gif" width="1000" height="500" />
+</div>
+
 ## Pivotal Tracker
 
 Project is currently being managed with Pivotal Tracker, a project management tool. You can find the stories at 

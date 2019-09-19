@@ -8,7 +8,7 @@
     "clean": "rimraf dist && mkdir dist",
     "build-server": "babel -d ./dist ./server -s",
     "lint": "eslint \"server/**/*.js\" app.js --fix",
-    "precommit": "npm run lint && npm test --no-verify",
+    "precommit": "npm run lint && npm test --no-verify || exit 0",
     "postinstall": "npm run build",
     "start": "cross-env NODE_ENV=production node dist/app.js",
     "start:dev": "cross-env NODE_ENV=development nodemon --exec babel-node server/app.js",
@@ -84,6 +84,8 @@
       "UI",
       "dist/",
       "client",
+      "server/helpers/utils/mailUtil.js",
+      "server/helpers/utils/mailContentGenerator.js",
       "server/app.js"
     ]
   },
